@@ -1,0 +1,1 @@
+public class PlayerPrefConstants{    public const string assignedLanguageKey = "ASSIGNED_LANGUAGE";}

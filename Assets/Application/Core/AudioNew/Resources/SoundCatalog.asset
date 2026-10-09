@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422960ff059d411fbd3f98678027fc84, type: 3}
+  m_Name: SoundCatalog
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 54fe4eae7dd064a408a95aef459de5e4, type: 2}
+  sfxGroup: {fileID: -4557929014893226497, guid: 54fe4eae7dd064a408a95aef459de5e4, type: 2}
+  uiGroup: {fileID: -8446966372871857862, guid: 54fe4eae7dd064a408a95aef459de5e4, type: 2}
+  musicGroup: {fileID: -3914305864112506300, guid: 54fe4eae7dd064a408a95aef459de5e4, type: 2}
+  ambienceGroup: {fileID: 4687083570285029323, guid: 54fe4eae7dd064a408a95aef459de5e4, type: 2}
+  initialVoices: 8
+  maxVoices: 32
+  defaultMusicFade: 1
+  sounds: []
