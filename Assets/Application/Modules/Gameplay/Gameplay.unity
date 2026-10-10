@@ -163,13 +163,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9153980dda4034b03bce80abba3fa2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameplayOutlet
-  canvas: {fileID: 0}
-  canvasGroup: {fileID: 0}
+  canvas: {fileID: 7607314941941392793}
+  canvasGroup: {fileID: 7607314941941392794}
   shouldResetApp: 1
   buttonHolder: {fileID: 1433476869}
   playButton: {fileID: 1697854816}
   exitButton: {fileID: 2076551856}
   desktopUnlock: {fileID: 1516411467}
+  eyelids: {fileID: 670829598}
   inputHandler: {fileID: 1788513577}
   cameraController: {fileID: 1163031333}
 --- !u!1 &153831236
@@ -251,229 +252,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &199051928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 199051929}
-  - component: {fileID: 199051931}
-  - component: {fileID: 199051930}
-  m_Layer: 5
-  m_Name: BackgroundImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &199051929
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199051928}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7607314941941392791}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &199051930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199051928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 403178288}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1991033864557486755, guid: 08c79e340717a491daf78a77b8a39686, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
-  _blurEnabled: 0
-  _alphaBlend: 255
-  _sourceImageFade: 0
-  additionalBlurPadding: 0
-  tryBatchWithSimilar: 0
-  fillEntireRenderTexture: 0
-  _common:
-    blurReferencesFrom: 0
-    cameraReference: {fileID: 0}
-    featureNumber: 0
-    blurStrength: 1
-    unrankedLayer: 0
-    priority: 0
-    blurPreset: {fileID: 0}
-    blurInstanceSettings:
-      downscaleSections:
-      - algorithmIdx: 3
-        iterations: 2
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      blurSections:
-      - algorithmIdx: 2
-        iterations: 4
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      referenceResolution: 1080
-      hqResample: 0
-      blurAdditionalDistancePerIteration: 1
-      ditherStrength: 0.25
-      brightness: 0
-      contrast: 0
-      vibrancy: 0
-      tint: {r: 0, g: 0, b: 0, a: 0}
-  _normalRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _mobileRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _useAdvancedRaycast: 0
-  _advancedRaycastFlags: 131
-  _dataMode: 0
-  quadDataPreset: {fileID: 0}
-  _instanceQuadDataContainer:
-    editorSelectedQuadIdx: 0
-    _quadDataList:
-    - editorSelectedAnimationState: 0
-      editorSelectedAnimationSubState: 0
-      _outlineConfig:
-        rid: -2
-      _gradientConfig:
-        rid: -2
-      _patternConfig:
-        rid: -2
-      _cutoutConfig:
-        rid: -2
-      _strokeConfig:
-        rid: -2
-      _skewConfig:
-        rid: -2
-      name: Quad0
-      _anchorMin: {x: 0, y: 0}
-      _anchorMax: {x: 1, y: 1}
-      _anchoredPosition: {x: 0, y: 0}
-      _sizeDelta: {x: 0, y: 0}
-      _pivot: {x: 0.5, y: 0.5}
-      highlightedFix: 1
-      proceduralAnimationStates:
-      - proceduralProperties:
-        - outlineAnim:
-            rid: -2
-          gradientAnim:
-            rid: -2
-          patternAnim:
-            rid: -2
-          cutoutAnim:
-            rid: -2
-          strokeAnim:
-            rid: -2
-          skewAnim:
-            rid: -2
-          interpolationType: 0
-          duration: 0.1
-          uvRect: {x: 0, y: 0, z: 1, w: 1}
-          offset: {x: 0, y: 0}
-          sizeModifier: {x: 0, y: 0}
-          softness: 1
-          rotation: 0
-          cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
-          cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
-          primaryColors:
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          primaryColorOffset: {x: 0, y: 0}
-          primaryColorRotation: 0
-          primaryColorScale: {x: 1, y: 1}
-          primaryColorFade: 255
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      _enabled: 1
-      _advancedQuadSettings: 0
-      _colorPreset: {fileID: 0}
-      _primaryColorWrapModeX: 0
-      _primaryColorWrapModeY: 0
-      _sizeModifierAspectCorrection: 0
-      _fitRotatedImageWithinBounds: 0
-      _primaryColorDimensions: {x: 1, y: 1}
-      _primaryColorPresetMix: 1
-      _softnessFeatherMode: 2
-      _normalizeChamfer: 1
-      _concavityIsSmoothing: 0
-      _meshSubdivisions: 2
-      _meshTopology: 0
-    primaryQuadIdx: 0
-  animationMode: 0
-  selectable: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!222 &199051931
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199051928}
-  m_CullTransparentMesh: 1
 --- !u!1 &215676691
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,47 +464,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
   m_PrefabInstance: {fileID: 793651022}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &403178288
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultProceduralBlurredImage
-  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _DstBlend: 10
-    - _SrcBlend: 5
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1001 &475155033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -874,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 403178288}
+  m_Material: {fileID: 1807910061}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1077,229 +814,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482598961}
-  m_CullTransparentMesh: 1
---- !u!1 &503777843
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 503777844}
-  - component: {fileID: 503777846}
-  - component: {fileID: 503777845}
-  m_Layer: 5
-  m_Name: NonInteractableItemLayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &503777844
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503777843}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7607314941941392791}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &503777845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503777843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 403178288}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -340199709312903436, guid: 5d282eee84532471ab5542f705ec8bec, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
-  _blurEnabled: 0
-  _alphaBlend: 255
-  _sourceImageFade: 0
-  additionalBlurPadding: 0
-  tryBatchWithSimilar: 0
-  fillEntireRenderTexture: 0
-  _common:
-    blurReferencesFrom: 0
-    cameraReference: {fileID: 0}
-    featureNumber: 0
-    blurStrength: 1
-    unrankedLayer: 0
-    priority: 0
-    blurPreset: {fileID: 0}
-    blurInstanceSettings:
-      downscaleSections:
-      - algorithmIdx: 3
-        iterations: 2
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      blurSections:
-      - algorithmIdx: 2
-        iterations: 4
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      referenceResolution: 1080
-      hqResample: 0
-      blurAdditionalDistancePerIteration: 1
-      ditherStrength: 0.25
-      brightness: 0
-      contrast: 0
-      vibrancy: 0
-      tint: {r: 0, g: 0, b: 0, a: 0}
-  _normalRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _mobileRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _useAdvancedRaycast: 0
-  _advancedRaycastFlags: 131
-  _dataMode: 0
-  quadDataPreset: {fileID: 0}
-  _instanceQuadDataContainer:
-    editorSelectedQuadIdx: 0
-    _quadDataList:
-    - editorSelectedAnimationState: 0
-      editorSelectedAnimationSubState: 0
-      _outlineConfig:
-        rid: -2
-      _gradientConfig:
-        rid: -2
-      _patternConfig:
-        rid: -2
-      _cutoutConfig:
-        rid: -2
-      _strokeConfig:
-        rid: -2
-      _skewConfig:
-        rid: -2
-      name: Quad0
-      _anchorMin: {x: 0, y: 0}
-      _anchorMax: {x: 1, y: 1}
-      _anchoredPosition: {x: 0, y: 0}
-      _sizeDelta: {x: 0, y: 0}
-      _pivot: {x: 0.5, y: 0.5}
-      highlightedFix: 1
-      proceduralAnimationStates:
-      - proceduralProperties:
-        - outlineAnim:
-            rid: -2
-          gradientAnim:
-            rid: -2
-          patternAnim:
-            rid: -2
-          cutoutAnim:
-            rid: -2
-          strokeAnim:
-            rid: -2
-          skewAnim:
-            rid: -2
-          interpolationType: 0
-          duration: 0.1
-          uvRect: {x: 0, y: 0, z: 1, w: 1}
-          offset: {x: 0, y: 0}
-          sizeModifier: {x: 0, y: 0}
-          softness: 1
-          rotation: 0
-          cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
-          cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
-          primaryColors:
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          primaryColorOffset: {x: 0, y: 0}
-          primaryColorRotation: 0
-          primaryColorScale: {x: 1, y: 1}
-          primaryColorFade: 255
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      _enabled: 1
-      _advancedQuadSettings: 0
-      _colorPreset: {fileID: 0}
-      _primaryColorWrapModeX: 0
-      _primaryColorWrapModeY: 0
-      _sizeModifierAspectCorrection: 0
-      _fitRotatedImageWithinBounds: 0
-      _primaryColorDimensions: {x: 1, y: 1}
-      _primaryColorPresetMix: 1
-      _softnessFeatherMode: 2
-      _normalizeChamfer: 1
-      _concavityIsSmoothing: 0
-      _meshSubdivisions: 2
-      _meshTopology: 0
-    primaryQuadIdx: 0
-  animationMode: 0
-  selectable: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!222 &503777846
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503777843}
   m_CullTransparentMesh: 1
 --- !u!1001 &512869411
 PrefabInstance:
@@ -1665,6 +1179,252 @@ MonoBehaviour:
     layerName: Chair
     basePosition: {x: 0, y: 0}
     appliedOffset: {x: 0, y: 0}
+--- !u!1 &670829594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670829595}
+  - component: {fileID: 670829597}
+  - component: {fileID: 670829596}
+  - component: {fileID: 670829598}
+  m_Layer: 5
+  m_Name: EyesImageAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &670829595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670829594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7607314941941392791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &670829596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670829594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
+  m_Material: {fileID: 1807910061}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+  _blurEnabled: 0
+  _alphaBlend: 255
+  _sourceImageFade: 0
+  additionalBlurPadding: 0
+  tryBatchWithSimilar: 0
+  fillEntireRenderTexture: 0
+  _common:
+    blurReferencesFrom: 0
+    cameraReference: {fileID: 0}
+    featureNumber: 0
+    blurStrength: 1
+    unrankedLayer: 0
+    priority: 0
+    blurPreset: {fileID: 0}
+    blurInstanceSettings:
+      downscaleSections:
+      - algorithmIdx: 3
+        iterations: 2
+        horizontalSamplesPerSide: 2
+        verticalSamplesPerSide: 2
+        sampleDistance: 1.5
+      blurSections:
+      - algorithmIdx: 2
+        iterations: 4
+        horizontalSamplesPerSide: 2
+        verticalSamplesPerSide: 2
+        sampleDistance: 1.5
+      referenceResolution: 1080
+      hqResample: 0
+      blurAdditionalDistancePerIteration: 1
+      ditherStrength: 0.25
+      brightness: 0
+      contrast: 0
+      vibrancy: 0
+      tint: {r: 0, g: 0, b: 0, a: 0}
+  _normalRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  _mobileRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  _useAdvancedRaycast: 0
+  _advancedRaycastFlags: 131
+  _dataMode: 0
+  quadDataPreset: {fileID: 0}
+  _instanceQuadDataContainer:
+    editorSelectedQuadIdx: 0
+    _quadDataList:
+    - editorSelectedAnimationState: 0
+      editorSelectedAnimationSubState: 0
+      _outlineConfig:
+        rid: -2
+      _gradientConfig:
+        rid: -2
+      _patternConfig:
+        rid: -2
+      _cutoutConfig:
+        rid: -2
+      _strokeConfig:
+        rid: -2
+      _skewConfig:
+        rid: -2
+      name: Quad0
+      _anchorMin: {x: 0, y: 0}
+      _anchorMax: {x: 1, y: 1}
+      _anchoredPosition: {x: 0, y: 0}
+      _sizeDelta: {x: 0, y: 0}
+      _pivot: {x: 0.5, y: 0.5}
+      highlightedFix: 1
+      proceduralAnimationStates:
+      - proceduralProperties:
+        - outlineAnim:
+            rid: -2
+          gradientAnim:
+            rid: -2
+          patternAnim:
+            rid: -2
+          cutoutAnim:
+            rid: -2
+          strokeAnim:
+            rid: -2
+          skewAnim:
+            rid: -2
+          interpolationType: 0
+          duration: 0.1
+          uvRect: {x: 0, y: 0, z: 1, w: 1}
+          offset: {x: 0, y: 0}
+          sizeModifier: {x: 0, y: 0}
+          softness: 1
+          rotation: 0
+          cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
+          cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
+          primaryColors:
+          - {r: 0, g: 0, b: 0, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 1, b: 1, a: 1}
+          primaryColorOffset: {x: 0, y: 0}
+          primaryColorRotation: 0
+          primaryColorScale: {x: 1, y: 1}
+          primaryColorFade: 255
+        playbackType: 0
+        loopStartIdx: 0
+        unwindToIdx: -1
+        unwindRate: 1
+      - proceduralProperties: []
+        playbackType: 0
+        loopStartIdx: 0
+        unwindToIdx: -1
+        unwindRate: 1
+      - proceduralProperties: []
+        playbackType: 0
+        loopStartIdx: 0
+        unwindToIdx: -1
+        unwindRate: 1
+      - proceduralProperties: []
+        playbackType: 0
+        loopStartIdx: 0
+        unwindToIdx: -1
+        unwindRate: 1
+      - proceduralProperties: []
+        playbackType: 0
+        loopStartIdx: 0
+        unwindToIdx: -1
+        unwindRate: 1
+      _enabled: 1
+      _advancedQuadSettings: 0
+      _colorPreset: {fileID: 0}
+      _primaryColorWrapModeX: 0
+      _primaryColorWrapModeY: 0
+      _sizeModifierAspectCorrection: 0
+      _fitRotatedImageWithinBounds: 0
+      _primaryColorDimensions: {x: 1, y: 1}
+      _primaryColorPresetMix: 1
+      _softnessFeatherMode: 2
+      _normalizeChamfer: 1
+      _concavityIsSmoothing: 0
+      _meshSubdivisions: 2
+      _meshTopology: 0
+    primaryQuadIdx: 0
+  animationMode: 1
+  selectable: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!222 &670829597
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670829594}
+  m_CullTransparentMesh: 1
+--- !u!114 &670829598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670829594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be42eff9486bef4481dd7a969c3c825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyelidsAnimation
+  color: {r: 0, g: 0, b: 0, a: 1}
+  softness: 80
+  curvature: 0.5
+  blinkClose: 0.08
+  blinkOpen: 0.15
+  slowClose: 1.2
+  slowHold: 0.4
+  slowOpen: 1.5
+  closeDuration: 1
+  openDuration: 1
 --- !u!1001 &755217599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1862,6 +1622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Canvas_Buttons
       objectReference: {fileID: 0}
+    - target: {fileID: 8443639158088451593, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8850065789028564527, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
       propertyPath: m_SortingOrder
       value: 32
@@ -1972,6 +1736,10 @@ PrefabInstance:
     - target: {fileID: 8443639158088451593, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
       propertyPath: m_Name
       value: UI_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443639158088451593, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8850065789028564527, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
       propertyPath: m_SortingOrder
@@ -2519,6 +2287,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1468460805
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DefaultProceduralBlurredImage
+  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _DstBlend: 10
+    - _SrcBlend: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &1516411466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2607,6 +2416,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4008696129208568883, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 1468460805}
+    - target: {fileID: 4008696129208568883, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4290795862157537243, guid: c3ad688fe245f46279459869362533ec, type: 3}
       propertyPath: m_Name
       value: Layer_3_Desktop
@@ -2639,229 +2456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
---- !u!1 &1525347700
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1525347701}
-  - component: {fileID: 1525347703}
-  - component: {fileID: 1525347702}
-  m_Layer: 5
-  m_Name: InteractableItemLayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1525347701
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525347700}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7607314941941392791}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1525347702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525347700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 403178288}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dcad766b45ef56f44aeb4062dfaea147, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
-  _blurEnabled: 0
-  _alphaBlend: 255
-  _sourceImageFade: 0
-  additionalBlurPadding: 0
-  tryBatchWithSimilar: 0
-  fillEntireRenderTexture: 0
-  _common:
-    blurReferencesFrom: 0
-    cameraReference: {fileID: 0}
-    featureNumber: 0
-    blurStrength: 1
-    unrankedLayer: 0
-    priority: 0
-    blurPreset: {fileID: 0}
-    blurInstanceSettings:
-      downscaleSections:
-      - algorithmIdx: 3
-        iterations: 2
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      blurSections:
-      - algorithmIdx: 2
-        iterations: 4
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      referenceResolution: 1080
-      hqResample: 0
-      blurAdditionalDistancePerIteration: 1
-      ditherStrength: 0.25
-      brightness: 0
-      contrast: 0
-      vibrancy: 0
-      tint: {r: 0, g: 0, b: 0, a: 0}
-  _normalRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _mobileRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _useAdvancedRaycast: 0
-  _advancedRaycastFlags: 131
-  _dataMode: 0
-  quadDataPreset: {fileID: 0}
-  _instanceQuadDataContainer:
-    editorSelectedQuadIdx: 0
-    _quadDataList:
-    - editorSelectedAnimationState: 0
-      editorSelectedAnimationSubState: 0
-      _outlineConfig:
-        rid: -2
-      _gradientConfig:
-        rid: -2
-      _patternConfig:
-        rid: -2
-      _cutoutConfig:
-        rid: -2
-      _strokeConfig:
-        rid: -2
-      _skewConfig:
-        rid: -2
-      name: Quad0
-      _anchorMin: {x: 0, y: 0}
-      _anchorMax: {x: 1, y: 1}
-      _anchoredPosition: {x: 0, y: 0}
-      _sizeDelta: {x: 0, y: 0}
-      _pivot: {x: 0.5, y: 0.5}
-      highlightedFix: 1
-      proceduralAnimationStates:
-      - proceduralProperties:
-        - outlineAnim:
-            rid: -2
-          gradientAnim:
-            rid: -2
-          patternAnim:
-            rid: -2
-          cutoutAnim:
-            rid: -2
-          strokeAnim:
-            rid: -2
-          skewAnim:
-            rid: -2
-          interpolationType: 0
-          duration: 0.1
-          uvRect: {x: 0, y: 0, z: 1, w: 1}
-          offset: {x: 0, y: 0}
-          sizeModifier: {x: 0, y: 0}
-          softness: 1
-          rotation: 0
-          cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
-          cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
-          primaryColors:
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          primaryColorOffset: {x: 0, y: 0}
-          primaryColorRotation: 0
-          primaryColorScale: {x: 1, y: 1}
-          primaryColorFade: 255
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      _enabled: 1
-      _advancedQuadSettings: 0
-      _colorPreset: {fileID: 0}
-      _primaryColorWrapModeX: 0
-      _primaryColorWrapModeY: 0
-      _sizeModifierAspectCorrection: 0
-      _fitRotatedImageWithinBounds: 0
-      _primaryColorDimensions: {x: 1, y: 1}
-      _primaryColorPresetMix: 1
-      _softnessFeatherMode: 2
-      _normalizeChamfer: 1
-      _concavityIsSmoothing: 0
-      _meshSubdivisions: 2
-      _meshTopology: 0
-    primaryQuadIdx: 0
-  animationMode: 0
-  selectable: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!222 &1525347703
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525347700}
-  m_CullTransparentMesh: 1
 --- !u!224 &1557070966 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5125150237466997546, guid: e73b521fe4eb14b358e2c7e01c75eac3, type: 3}
@@ -2883,229 +2477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f404cf4db504b24940dfc8544b0da2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1754679667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1754679668}
-  - component: {fileID: 1754679670}
-  - component: {fileID: 1754679669}
-  m_Layer: 5
-  m_Name: DesktopLayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1754679668
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754679667}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7607314941941392791}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1754679669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754679667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 403178288}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 6527285518945232940, guid: 33564d27e65ee45dfab76a2523b9be8f, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
-  _blurEnabled: 0
-  _alphaBlend: 255
-  _sourceImageFade: 0
-  additionalBlurPadding: 0
-  tryBatchWithSimilar: 0
-  fillEntireRenderTexture: 0
-  _common:
-    blurReferencesFrom: 0
-    cameraReference: {fileID: 0}
-    featureNumber: 0
-    blurStrength: 1
-    unrankedLayer: 0
-    priority: 0
-    blurPreset: {fileID: 0}
-    blurInstanceSettings:
-      downscaleSections:
-      - algorithmIdx: 3
-        iterations: 2
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      blurSections:
-      - algorithmIdx: 2
-        iterations: 4
-        horizontalSamplesPerSide: 2
-        verticalSamplesPerSide: 2
-        sampleDistance: 1.5
-      referenceResolution: 1080
-      hqResample: 0
-      blurAdditionalDistancePerIteration: 1
-      ditherStrength: 0.25
-      brightness: 0
-      contrast: 0
-      vibrancy: 0
-      tint: {r: 0, g: 0, b: 0, a: 0}
-  _normalRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _mobileRaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  _useAdvancedRaycast: 0
-  _advancedRaycastFlags: 131
-  _dataMode: 0
-  quadDataPreset: {fileID: 0}
-  _instanceQuadDataContainer:
-    editorSelectedQuadIdx: 0
-    _quadDataList:
-    - editorSelectedAnimationState: 0
-      editorSelectedAnimationSubState: 0
-      _outlineConfig:
-        rid: -2
-      _gradientConfig:
-        rid: -2
-      _patternConfig:
-        rid: -2
-      _cutoutConfig:
-        rid: -2
-      _strokeConfig:
-        rid: -2
-      _skewConfig:
-        rid: -2
-      name: Quad0
-      _anchorMin: {x: 0, y: 0}
-      _anchorMax: {x: 1, y: 1}
-      _anchoredPosition: {x: 0, y: 0}
-      _sizeDelta: {x: 0, y: 0}
-      _pivot: {x: 0.5, y: 0.5}
-      highlightedFix: 1
-      proceduralAnimationStates:
-      - proceduralProperties:
-        - outlineAnim:
-            rid: -2
-          gradientAnim:
-            rid: -2
-          patternAnim:
-            rid: -2
-          cutoutAnim:
-            rid: -2
-          strokeAnim:
-            rid: -2
-          skewAnim:
-            rid: -2
-          interpolationType: 0
-          duration: 0.1
-          uvRect: {x: 0, y: 0, z: 1, w: 1}
-          offset: {x: 0, y: 0}
-          sizeModifier: {x: 0, y: 0}
-          softness: 1
-          rotation: 0
-          cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
-          cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
-          primaryColors:
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          - {r: 1, g: 1, b: 1, a: 1}
-          primaryColorOffset: {x: 0, y: 0}
-          primaryColorRotation: 0
-          primaryColorScale: {x: 1, y: 1}
-          primaryColorFade: 255
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      - proceduralProperties: []
-        playbackType: 0
-        loopStartIdx: 0
-        unwindToIdx: -1
-        unwindRate: 1
-      _enabled: 1
-      _advancedQuadSettings: 0
-      _colorPreset: {fileID: 0}
-      _primaryColorWrapModeX: 0
-      _primaryColorWrapModeY: 0
-      _sizeModifierAspectCorrection: 0
-      _fitRotatedImageWithinBounds: 0
-      _primaryColorDimensions: {x: 1, y: 1}
-      _primaryColorPresetMix: 1
-      _softnessFeatherMode: 2
-      _normalizeChamfer: 1
-      _concavityIsSmoothing: 0
-      _meshSubdivisions: 2
-      _meshTopology: 0
-    primaryQuadIdx: 0
-  animationMode: 0
-  selectable: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!222 &1754679670
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754679667}
-  m_CullTransparentMesh: 1
 --- !u!1 &1788513576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,6 +2521,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1807910061
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DefaultProceduralBlurredImage
+  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _DstBlend: 10
+    - _SrcBlend: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!224 &1907000094 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3404962883917629743, guid: c3ad688fe245f46279459869362533ec, type: 3}
@@ -3286,26 +2698,42 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 199051929}
-    - targetCorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1754679668}
-    - targetCorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1525347701}
-    - targetCorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 503777844}
-    - targetCorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 646792654}
-    m_AddedComponents: []
+    - targetCorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 670829595}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8443639158088451593, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7607314941941392794}
   m_SourcePrefab: {fileID: 100100000, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
 --- !u!224 &7607314941941392791 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
   m_PrefabInstance: {fileID: 7607314941941392790}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7607314941941392792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8443639158088451593, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
+  m_PrefabInstance: {fileID: 7607314941941392790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &7607314941941392793 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8850065789028564527, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
+  m_PrefabInstance: {fileID: 7607314941941392790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &7607314941941392794
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607314941941392792}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

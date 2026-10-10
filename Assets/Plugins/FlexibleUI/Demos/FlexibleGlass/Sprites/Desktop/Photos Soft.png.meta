@@ -1,5 +1,13 @@
 fileFormatVersion: 2
 guid: adc57e31c01d4a24ebfd291101a90866
+AssetOrigin:
+  serializedVersion: 1
+  productId: 338646
+  packageName: Flexible UI Suite - Procedural UI, UI Blur, And More!
+  packageVersion: FI 3.0.1, FB 1.3.1, FG 1.1.1
+  assetPath: Assets/Plugins/FlexibleUI/Demos/FlexibleGlass/Sprites/Desktop/Photos
+    Soft.png
+  uploadId: 1000604
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +29,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -128,11 +136,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 338646
-  packageName: Flexible UI Suite - Procedural UI, UI Blur, And More!
-  packageVersion: FI 3.0.1, FB 1.3.1, FG 1.1.1
-  assetPath: Assets/Plugins/FlexibleUI/Demos/FlexibleGlass/Sprites/Desktop/Photos
-    Soft.png
-  uploadId: 1000604

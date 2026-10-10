@@ -8,6 +8,7 @@ public class GameplayOutlet : SceneControllerOutlet
     public UIButton exitButton;
     
     public FlexibleImage desktopUnlock;
+    public EyelidsAnimation eyelids;
     public InputHandler inputHandler;
     public CameraController cameraController;
 }
