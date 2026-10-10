@@ -25,6 +25,12 @@ public class UILabel : MonoBehaviour
     public TMP_Text Tmp => tmp != null ? tmp : tmp = GetComponent<TMP_Text>();
     public bool IsTyping => typing != null;
 
+    public float CharactersPerSecond
+    {
+        get => charactersPerSecond;
+        set => charactersPerSecond = Mathf.Max(1f, value);
+    }
+
     public string Text
     {
         get => Tmp.text;

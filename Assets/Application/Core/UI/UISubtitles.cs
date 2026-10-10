@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-// Shows lines one after another on a UILabel: typewriter, reading time, fade in/out.
-// With autoAdvance off it waits for Next(), which makes it a click-to-continue dialogue box.
+// Plays lines on a UILabel: typewriter, per-line sound, reading time, fade in/out.
 public class UISubtitles : MonoBehaviour
 {
     [SerializeField] private UILabel label;
+    [Tooltip("Plays each line's AudioClip (voice-over). Catalogue sounds go through AudioService " +
+             "instead. Route it to a mixer group so the volume settings apply.")]
+    [SerializeField] private AudioSource voiceSource;
     [SerializeField] private bool typewriter = true;
     [Tooltip("Go to the next line by itself. Off = waits for Next().")]
     [SerializeField] private bool autoAdvance = true;
@@ -17,34 +19,96 @@ public class UISubtitles : MonoBehaviour
     [Tooltip("Reading time added per character.")]
     [SerializeField, Min(0f)] private float secondsPerCharacter = 0.04f;
     [SerializeField, Min(0f)] private float fadeDuration = 0.25f;
+    [Tooltip("Hold a line until its voice clip has finished, even past its reading time.")]
+    [SerializeField] private bool waitForVoice = true;
 
-    private readonly Queue<(string text, float duration)> queue = new Queue<(string, float)>();
+    private struct Settings
+    {
+        public bool typewriter;
+        public bool autoAdvance;
+        public bool waitForVoice;
+        public float minLineDuration;
+        public float secondsPerCharacter;
+        public float fadeDuration;
+        public float charactersPerSecond;
+    }
+
+    private readonly Queue<MonologueLine> queue = new Queue<MonologueLine>();
     private Coroutine routine;
     private Action finished;
     private bool advanceRequested;
+    private Settings defaults;
+    private bool defaultsCaptured;
+    private float charactersPerSecondOverride;
 
+    public event Action<MonologueLine> LineStarted;
+
+    public UILabel Label => label != null ? label : label = GetComponent<UILabel>();
     public bool IsPlaying => routine != null;
+    public bool IsTyping => Label.IsTyping;
+    public MonologueLine CurrentLine { get; private set; }
+    public int PendingLines => queue.Count;
 
-    // Queues a line; duration < 0 means it is calculated from the text length.
-    public void Show(string line, float duration = -1f)
+    public bool IsWaitingForNext { get; private set; }
+
+    public bool Typewriter { get => typewriter; set => typewriter = value; }
+    public bool AutoAdvance { get => autoAdvance; set => autoAdvance = value; }
+    public bool WaitForVoice { get => waitForVoice; set => waitForVoice = value; }
+    public float MinLineDuration { get => minLineDuration; set => minLineDuration = Mathf.Max(0f, value); }
+    public float SecondsPerCharacter { get => secondsPerCharacter; set => secondsPerCharacter = Mathf.Max(0f, value); }
+    public float FadeDuration { get => fadeDuration; set => fadeDuration = Mathf.Max(0f, value); }
+    public float CharactersPerSecond
     {
-        queue.Enqueue((line, duration));
+        get => Label.CharactersPerSecond;
+        set
+        {
+            CaptureDefaults();
+            charactersPerSecondOverride = value;
+            Label.CharactersPerSecond = value;
+        }
+    }
+
+    public void Show(string line, float duration = -1f) => Show(new MonologueLine(line, Mathf.Max(0f, duration)));
+
+    public void Show(MonologueLine line)
+    {
+        if (line == null || !line.HasText) return;
+
+        queue.Enqueue(line);
         if (routine == null && isActiveAndEnabled) routine = StartCoroutine(Run());
     }
 
-    // Replaces whatever is playing with these lines.
     public void Play(IEnumerable<string> lines, Action onFinished = null)
     {
         Clear();
         finished = onFinished;
         foreach (var line in lines) Show(line);
+        if (routine == null) EndRun();
     }
 
-    // Finishes the typewriter first; a second call moves on to the next line.
+    public void Play(IEnumerable<MonologueLine> lines, Action onFinished = null)
+    {
+        Clear();
+        finished = onFinished;
+        foreach (var line in lines) Show(line);
+
+        if (routine == null) EndRun();
+    }
+
     public void Next()
     {
-        if (label.IsTyping) label.CompleteTyping();
+        if (Label.IsTyping) Label.CompleteTyping();
         else advanceRequested = true;
+    }
+
+    public void Finish()
+    {
+        if (routine == null) return;
+
+        StopCoroutine(routine);
+        routine = null;
+        queue.Clear();
+        EndRun();
     }
 
     public void Clear()
@@ -53,39 +117,119 @@ public class UISubtitles : MonoBehaviour
         routine = null;
         queue.Clear();
         finished = null;
+        CurrentLine = null;
+        IsWaitingForNext = false;
+        StopVoice();
         if (label != null) label.Clear();
+    }
+
+    public void ResetSettings()
+    {
+        CaptureDefaults();
+        typewriter = defaults.typewriter;
+        autoAdvance = defaults.autoAdvance;
+        waitForVoice = defaults.waitForVoice;
+        minLineDuration = defaults.minLineDuration;
+        secondsPerCharacter = defaults.secondsPerCharacter;
+        fadeDuration = defaults.fadeDuration;
+        charactersPerSecondOverride = 0f;
+        Label.CharactersPerSecond = defaults.charactersPerSecond;
     }
 
     private void Awake()
     {
         if (label == null) label = GetComponent<UILabel>();
+        CaptureDefaults();
     }
 
     private void OnDisable() => Clear();
+
+    private void CaptureDefaults()
+    {
+        if (defaultsCaptured) return;
+        defaultsCaptured = true;
+
+        defaults = new Settings
+        {
+            typewriter = typewriter,
+            autoAdvance = autoAdvance,
+            waitForVoice = waitForVoice,
+            minLineDuration = minLineDuration,
+            secondsPerCharacter = secondsPerCharacter,
+            fadeDuration = fadeDuration,
+            charactersPerSecond = Label.CharactersPerSecond
+        };
+    }
 
     private IEnumerator Run()
     {
         while (queue.Count > 0)
         {
-            var (text, duration) = queue.Dequeue();
+            var line = queue.Dequeue();
+            var text = line.text ?? string.Empty;
+
+            CurrentLine = line;
             advanceRequested = false;
+            IsWaitingForNext = false;
 
-            if (typewriter) label.Type(text);
-            else label.Text = text;
-            if (fadeDuration > 0f) label.FadeIn(fadeDuration);
-            else label.Alpha = 1f;
+            Label.CharactersPerSecond = line.charactersPerSecond > 0f ? line.charactersPerSecond : BaseCharactersPerSecond;
+            PlayLineSound(line);
+            LineStarted?.Invoke(line);
 
-            while (label.IsTyping) yield return null;
+            if (typewriter) Label.Type(text);
+            else Label.Text = text;
+            if (fadeDuration > 0f) Label.FadeIn(fadeDuration);
+            else Label.Alpha = 1f;
 
-            var hold = duration >= 0f ? duration : Mathf.Max(minLineDuration, text.Length * secondsPerCharacter);
-            for (var time = 0f; !advanceRequested && (!autoAdvance || time < hold); time += Time.unscaledDeltaTime)
+            while (Label.IsTyping) yield return null;
+
+            var hold = line.holdDuration > 0f ? line.holdDuration : Mathf.Max(minLineDuration, text.Length * secondsPerCharacter);
+            IsWaitingForNext = !autoAdvance;
+
+            for (var time = 0f; !advanceRequested && (!autoAdvance || time < hold || IsVoicePlaying); time += Time.unscaledDeltaTime)
                 yield return null;
 
-            if (fadeDuration > 0f) yield return label.FadeOut(fadeDuration).WaitForCompletion();
+            IsWaitingForNext = false;
+            StopVoice();
+
+            if (fadeDuration > 0f) yield return Label.FadeOut(fadeDuration).WaitForCompletion();
         }
 
-        label.Clear();
         routine = null;
+        EndRun();
+    }
+
+    private float BaseCharactersPerSecond => charactersPerSecondOverride > 0f ? charactersPerSecondOverride : defaults.charactersPerSecond;
+
+    private bool IsVoicePlaying => waitForVoice && voiceSource != null && voiceSource.isPlaying;
+
+    private void PlayLineSound(MonologueLine line)
+    {
+        if (line.sound.IsValid) AudioService.Play(line.sound);
+        if (line.clip == null) return;
+
+        if (voiceSource == null)
+        {
+            Debug.LogWarning($"[UISubtitles] A line has a voice clip but no AudioSource is assigned on {name}.", this);
+            return;
+        }
+
+        voiceSource.Stop();
+        voiceSource.clip = line.clip;
+        voiceSource.Play();
+    }
+
+    private void StopVoice()
+    {
+        if (voiceSource != null && voiceSource.isPlaying) voiceSource.Stop();
+    }
+
+    private void EndRun()
+    {
+        CurrentLine = null;
+        IsWaitingForNext = false;
+        StopVoice();
+        Label.Clear();
 
         var completed = finished;
         finished = null;
@@ -93,6 +237,10 @@ public class UISubtitles : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void Reset() => label = GetComponent<UILabel>();
+    private void Reset()
+    {
+        label = GetComponent<UILabel>();
+        voiceSource = GetComponentInParent<AudioSource>();
+    }
 #endif
 }

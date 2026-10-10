@@ -14,6 +14,8 @@ using UnityEngine;
 //   tabs.SetEnabled(MenuTab.Journal, false);
 //   ...
 //   tabs.Cleanup();
+//
+// Monologues are MonologueDefinition assets played by id: MonologueService.Play(MonologueIds.Intro).
 public class UIShowcase : MonoBehaviour
 {
     private static readonly string[] TabPages =
@@ -21,13 +23,6 @@ public class UIShowcase : MonoBehaviour
         "Udahni polako kroz nos četiri sekunde, zadrži dah, pa izdahni kroz usta.",
         "Zapiši jednu stvar koja te danas razveselila, koliko god bila mala.",
         "Ovdje bi bile postavke. Isključi toggle \"Gumbi\" da vidiš onemogućene gumbe."
-    };
-
-    private static readonly string[] SubtitleLines =
-    {
-        "Bok. Drago mi je što si tu.",
-        "Ovo su titlovi: tipkaju se, ostanu dovoljno dugo za čitanje i nestanu.",
-        "Klikni \"Dalje\" da preskočiš tipkanje ili prijeđeš na sljedeću liniju."
     };
 
     private const string Story =
@@ -46,6 +41,7 @@ public class UIShowcase : MonoBehaviour
     [SerializeField] private UIButton typeButton;
     [SerializeField] private UIButton fadeButton;
     [SerializeField] private UISubtitles subtitles;
+    [SerializeField] private MonologueDefinition demoMonologue;
     [SerializeField] private UIButton subtitlesButton;
     [SerializeField] private UIButton nextButton;
 
@@ -69,8 +65,8 @@ public class UIShowcase : MonoBehaviour
         // Text
         typeButton.Register(TypeStory);
         fadeButton.Register(ToggleStoryFade);
-        subtitlesButton.Register(PlaySubtitles);
-        nextButton.Register(subtitles.Next);
+        subtitlesButton.Register(PlayMonologue);
+        nextButton.Register(Next);
         TypeStory();
 
         // Toggles: SetIsOnWithoutNotify sets the starting state without firing listeners.
@@ -112,7 +108,23 @@ public class UIShowcase : MonoBehaviour
         story.FadeTo(isStoryFaded ? 0.15f : 1f, 0.4f);
     }
 
-    private void PlaySubtitles() => subtitles.Play(SubtitleLines, () => SetStatus("Titlovi gotovi."));
+    private void PlayMonologue()
+    {
+        if (demoMonologue != null)
+        {
+            MonologueService.Play(demoMonologue, () => SetStatus("Monolog gotov."));
+            return;
+        }
+
+        subtitles.Show("Dodaj MonologueDefinition u polje \"Demo Monologue\" da vidiš monolog.");
+        SetStatus("Nema monologa - Tools > Create > Monologue System.");
+    }
+
+    private void Next()
+    {
+        if (MonologueService.IsPlaying) MonologueService.Next();
+        else subtitles.Next();
+    }
 
     private void SetButtonsEnabled(bool isEnabled)
     {

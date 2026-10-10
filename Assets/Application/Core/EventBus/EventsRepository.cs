@@ -56,3 +56,26 @@ public class CurrencyChangedEvent : IEvent
         this.afterFormatted = afterFormatted;
     }
 }
+
+public class ItemClickedEvent : IEvent
+{
+    public readonly string id;
+    public readonly UnityEngine.GameObject source;
+
+    public ItemClickedEvent(string id, UnityEngine.GameObject source)
+    {
+        this.id = id;
+        this.source = source;
+    }
+}
+
+
+public class ModeChangedEvent : IEvent
+{
+    public readonly GameMode mode;
+
+    public ModeChangedEvent(GameMode mode)
+    {
+        this.mode = mode;
+    }
+}

@@ -127,10 +127,10 @@ MonoBehaviour:
       sampleDistance: 1.5
     referenceResolution: 1080
     hqResample: 0
-    blurAdditionalDistancePerIteration: 1
-    ditherStrength: 0.25
-    brightness: 0
+    blurAdditionalDistancePerIteration: 4.99
+    ditherStrength: 1.77
+    brightness: 0.432
     contrast: 0
     vibrancy: -0.598
-    tint: {r: 0, g: 0, b: 0, a: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   preview: -1
