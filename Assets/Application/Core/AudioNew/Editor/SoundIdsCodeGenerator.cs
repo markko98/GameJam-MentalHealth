@@ -28,6 +28,10 @@ public static class SoundIdsCodeGenerator
 
     public static SoundCatalog FindCatalog()
     {
+        // The one AudioService loads at runtime wins, so the dropdowns offer what will actually play.
+        var runtimeCatalog = Resources.Load<SoundCatalog>(SoundCatalog.ResourcesPath);
+        if (runtimeCatalog != null) return runtimeCatalog;
+
         var guid = AssetDatabase.FindAssets("t:SoundCatalog").FirstOrDefault();
         return guid == null ? null : AssetDatabase.LoadAssetAtPath<SoundCatalog>(AssetDatabase.GUIDToAssetPath(guid));
     }

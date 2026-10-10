@@ -167,8 +167,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 0}
   shouldResetApp: 1
   buttonHolder: {fileID: 1433476869}
-  playButton: {fileID: 0}
+  playButton: {fileID: 1697854816}
   exitButton: {fileID: 2076551856}
+  desktopUnlock: {fileID: 1516411467}
   inputHandler: {fileID: 1788513577}
   cameraController: {fileID: 1163031333}
 --- !u!1 &153831236
@@ -299,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 1501223790}
+  m_Material: {fileID: 403178288}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -513,6 +514,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4683491046439290435, guid: 29038a41372a64bd38dc6213dbc05a44, type: 3}
   m_PrefabInstance: {fileID: 755217599}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &268631221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268631223}
+  - component: {fileID: 268631222}
+  m_Layer: 0
+  m_Name: GameModeHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &268631222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268631221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f37c68609f8d4824b0c25f1ae306e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameModeHandler
+  initialMode: 2
+  cameraController: {fileID: 1163031333}
+  parallax: {fileID: 646792655}
+  transitionDuration: 0.8
+  modes:
+  - mode: 0
+    zoomFocus: {fileID: 0}
+    zoom: 1
+    parallaxStrength: 1
+  - mode: 1
+    zoomFocus: {fileID: 1962386989}
+    zoom: 1.3
+    parallaxStrength: 0.15
+--- !u!4 &268631223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268631221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &302042318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,6 +686,47 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 610839772412214149, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
   m_PrefabInstance: {fileID: 793651022}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &403178288
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DefaultProceduralBlurredImage
+  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _DstBlend: 10
+    - _SrcBlend: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &475155033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -775,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 1501223790}
+  m_Material: {fileID: 403178288}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1028,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 1501223790}
+  m_Material: {fileID: 403178288}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1463,148 +1562,60 @@ MonoBehaviour:
   layers:
   - name: OfficeBackground
     prefab: {fileID: 3123148933700925235, guid: e73b521fe4eb14b358e2c7e01c75eac3, type: 3}
-    sprite: {fileID: 1991033864557486755, guid: 08c79e340717a491daf78a77b8a39686, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 0
     fit: 0
     depth: 0.1
     visible: 1
     alphaHitThreshold: 0
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Table
     prefab: {fileID: 2854589380790971999, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
-    sprite: {fileID: -340199709312903436, guid: 5d282eee84532471ab5542f705ec8bec, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 0
     fit: 0
     depth: 0.85
     visible: 1
     alphaHitThreshold: 0
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Board
     prefab: {fileID: 7178668829238940115, guid: 29038a41372a64bd38dc6213dbc05a44, type: 3}
-    sprite: {fileID: -2860290085002470363, guid: 5b6d2f22911394c41b2659fcf5322c69, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 0
     fit: 0
     depth: 0.7
     visible: 1
     alphaHitThreshold: 0
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Desktop
     prefab: {fileID: 4290795862157537243, guid: c3ad688fe245f46279459869362533ec, type: 3}
-    sprite: {fileID: 6527285518945232940, guid: 33564d27e65ee45dfab76a2523b9be8f, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 1
     fit: 1
     depth: 0.8
     visible: 1
     alphaHitThreshold: 0.1
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Polaroid_Friends
     prefab: {fileID: 1013500206630863394, guid: c978c560e11d04646ad1dbb4bca8e3a8, type: 3}
-    sprite: {fileID: 0}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 1
     fit: 1
     depth: 0.7
     visible: 1
     alphaHitThreshold: 0.1
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Maca
     prefab: {fileID: 3918647474683058686, guid: 4b0be61a5eaeb4063bc097c99a1e4cdf, type: 3}
-    sprite: {fileID: -6839504576330560152, guid: 51c52b7b4d7e64bb0a64c24ad8c69d5c, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 1
     fit: 1
     depth: 0.7
     visible: 1
     alphaHitThreshold: 0.02
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Plant
     prefab: {fileID: 5837353561198113422, guid: 7b4a67682e5b245d7ae59a4907c6cdeb, type: 3}
-    sprite: {fileID: 906388131340123023, guid: ff17fb50b47204965816fc3e053494b6, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 0
     fit: 0
     depth: 0.95
     visible: 1
     alphaHitThreshold: 0
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   - name: Chair
     prefab: {fileID: 1013500206630863394, guid: 87cd0fbb64df3420080a4d57050e605c, type: 3}
-    sprite: {fileID: -8279072371224727009, guid: edf5d8d2a00e4491fab8d04333795757, type: 3}
-    tint: {r: 1, g: 1, b: 1, a: 1}
     kind: 0
     fit: 0
     depth: 1
     visible: 1
     alphaHitThreshold: 0
-    onClick:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    onPointerExit:
-      m_PersistentCalls:
-        m_Calls: []
   maxOffset: 80
   smoothTime: 0.45
   invert: 1
@@ -2259,14 +2270,13 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &1163031331
-Transform:
+--- !u!224 &1163031331
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163031328}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2274,6 +2284,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163031332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2330,6 +2345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bb37e0c7c4217af7eef168f5ea6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  zoomRoot: {fileID: 646792654}
+  zoomEase: 4
 --- !u!1001 &1195880523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2502,47 +2519,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &1501223790
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultProceduralBlurredImage
-  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _DstBlend: 10
-    - _SrcBlend: 5
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1001 &1516411466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2551,18 +2527,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 646792654}
     m_Modifications:
-    - target: {fileID: 2199702902334053740, guid: c3ad688fe245f46279459869362533ec, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2199702902334053740, guid: c3ad688fe245f46279459869362533ec, type: 3}
-      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2199702902334053740, guid: c3ad688fe245f46279459869362533ec, type: 3}
-      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationSubState
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3404962883917629743, guid: c3ad688fe245f46279459869362533ec, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2647,8 +2611,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Layer_3_Desktop
       objectReference: {fileID: 0}
-    - target: {fileID: 5237167906393300040, guid: c3ad688fe245f46279459869362533ec, type: 3}
-      propertyPath: m_RaycastTarget
+    - target: {fileID: 5594495969766649205, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5594495969766649205, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationSubState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441589933313165625, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2656,6 +2628,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3ad688fe245f46279459869362533ec, type: 3}
+--- !u!114 &1516411467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6441589933313165625, guid: c3ad688fe245f46279459869362533ec, type: 3}
+  m_PrefabInstance: {fileID: 1516411466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
 --- !u!1 &1525347700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 1501223790}
+  m_Material: {fileID: 403178288}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2889,6 +2872,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9165768306845043563, guid: c978c560e11d04646ad1dbb4bca8e3a8, type: 3}
   m_PrefabInstance: {fileID: 512869411}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1697854816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 946373026806600064, guid: c3ad688fe245f46279459869362533ec, type: 3}
+  m_PrefabInstance: {fileID: 1516411466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f404cf4db504b24940dfc8544b0da2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754679667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2938,7 +2932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 1501223790}
+  m_Material: {fileID: 403178288}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3161,6 +3155,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3404962883917629743, guid: c3ad688fe245f46279459869362533ec, type: 3}
   m_PrefabInstance: {fileID: 1516411466}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1962386989 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3506724704281799166, guid: c3ad688fe245f46279459869362533ec, type: 3}
+  m_PrefabInstance: {fileID: 1516411466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2072991593 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2715065350752235114, guid: 7b4a67682e5b245d7ae59a4907c6cdeb, type: 3}
@@ -3318,3 +3317,4 @@ SceneRoots:
   - {fileID: 153831239}
   - {fileID: 1788513578}
   - {fileID: 786407256}
+  - {fileID: 268631223}

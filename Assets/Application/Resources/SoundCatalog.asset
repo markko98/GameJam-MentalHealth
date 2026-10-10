@@ -20,4 +20,5 @@ MonoBehaviour:
   initialVoices: 8
   maxVoices: 32
   defaultMusicFade: 1
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 94291c4f24fd54185bb9f228b87096ad, type: 2}

@@ -21,6 +21,8 @@ public class UISubtitles : MonoBehaviour
     [SerializeField, Min(0f)] private float fadeDuration = 0.25f;
     [Tooltip("Hold a line until its voice clip has finished, even past its reading time.")]
     [SerializeField] private bool waitForVoice = true;
+    [Tooltip("Fade-out of a line's catalogue sound when the line ends or is skipped.")]
+    [SerializeField, Min(0f)] private float soundFadeOut = 0.15f;
 
     private struct Settings
     {
@@ -40,18 +42,15 @@ public class UISubtitles : MonoBehaviour
     private Settings defaults;
     private bool defaultsCaptured;
     private float charactersPerSecondOverride;
+    private AudioHandle lineSound;
 
     public event Action<MonologueLine> LineStarted;
 
     public UILabel Label => label != null ? label : label = GetComponent<UILabel>();
     public bool IsPlaying => routine != null;
     public bool IsTyping => Label.IsTyping;
-    public MonologueLine CurrentLine { get; private set; }
-    public int PendingLines => queue.Count;
-
     public bool IsWaitingForNext { get; private set; }
 
-    public bool Typewriter { get => typewriter; set => typewriter = value; }
     public bool AutoAdvance { get => autoAdvance; set => autoAdvance = value; }
     public bool WaitForVoice { get => waitForVoice; set => waitForVoice = value; }
     public float MinLineDuration { get => minLineDuration; set => minLineDuration = Mathf.Max(0f, value); }
@@ -117,7 +116,6 @@ public class UISubtitles : MonoBehaviour
         routine = null;
         queue.Clear();
         finished = null;
-        CurrentLine = null;
         IsWaitingForNext = false;
         StopVoice();
         if (label != null) label.Clear();
@@ -168,7 +166,6 @@ public class UISubtitles : MonoBehaviour
             var line = queue.Dequeue();
             var text = line.text ?? string.Empty;
 
-            CurrentLine = line;
             advanceRequested = false;
             IsWaitingForNext = false;
 
@@ -201,11 +198,11 @@ public class UISubtitles : MonoBehaviour
 
     private float BaseCharactersPerSecond => charactersPerSecondOverride > 0f ? charactersPerSecondOverride : defaults.charactersPerSecond;
 
-    private bool IsVoicePlaying => waitForVoice && voiceSource != null && voiceSource.isPlaying;
+    private bool IsVoicePlaying => waitForVoice && ((voiceSource != null && voiceSource.isPlaying) || lineSound.IsValid);
 
     private void PlayLineSound(MonologueLine line)
     {
-        if (line.sound.IsValid) AudioService.Play(line.sound);
+        if (line.sound.IsValid) lineSound = AudioService.Play(line.sound);
         if (line.clip == null) return;
 
         if (voiceSource == null)
@@ -219,14 +216,16 @@ public class UISubtitles : MonoBehaviour
         voiceSource.Play();
     }
 
+    // Both the voice clip and the catalogue sound belong to the line, so they end with it.
     private void StopVoice()
     {
         if (voiceSource != null && voiceSource.isPlaying) voiceSource.Stop();
+        lineSound.Stop(soundFadeOut);
+        lineSound = default;
     }
 
     private void EndRun()
     {
-        CurrentLine = null;
         IsWaitingForNext = false;
         StopVoice();
         Label.Clear();

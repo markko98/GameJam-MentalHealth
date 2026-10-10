@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9022c7a62da884cbd95368c39c76e4dd, type: 3}
-  m_Name: Monologue_Intro
+  m_Name: Monologue_BurnoutIndicator
   m_EditorClassIdentifier: Assembly-CSharp::MonologueDefinition
-  id: Dialogue_Intro
+  id: Burnout_Indicator
   speaker: Mare
   portrait: {fileID: 0}
   lines:
@@ -21,7 +21,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: 
+      value: Burnout_Indicator
     charactersPerSecond: 0
     holdDuration: 0
   - text: Kakav je ovo ogromni indikator baterije?
@@ -29,7 +29,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: 
+      value: Burnout_Indicator
     charactersPerSecond: 0
     holdDuration: 0
   - text: Valjda je to za burnout od HR-a kaj su nas natjerali da pazimo.
@@ -37,7 +37,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: 
+      value: Burnout_Indicator
     charactersPerSecond: 0
     holdDuration: 0
   charactersPerSecond: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   lineFadeDuration: 0
   autoAdvance: 0
   skippable: 1
-  waitForVoice: 1
-  playOnce: 0
+  waitForVoice: 0
+  playOnce: 1
   viewPrefab: {fileID: 0}
   openSound:
     value: 

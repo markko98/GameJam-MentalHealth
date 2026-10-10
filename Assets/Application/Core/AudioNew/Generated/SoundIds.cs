@@ -4,4 +4,5 @@
 // changing a SoundCatalog outside the Inspector.
 public static class SoundIds
 {
+    public const string Burnout_Indicator = "Burnout_Indicator";
 }

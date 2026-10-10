@@ -26,7 +26,6 @@ public static class MonologueService
     private static readonly HashSet<string> reportedIds = new HashSet<string>();
     private static readonly HashSet<GameObject> brokenPrefabs = new HashSet<GameObject>();
     private static MonologueView activeView;
-    private static Transform parent;
 
     public static event Action<MonologueDefinition> Started;
 
@@ -34,9 +33,6 @@ public static class MonologueService
 
     public static MonologueDefinition Current { get; private set; }
     public static bool IsPlaying => Current != null;
-    public static int Queued => queue.Count;
-
-    public static bool IsWaitingForNext => activeView != null && activeView.IsWaitingForNext;
 
     public static MonologueCatalogue Catalogue => catalogue != null ? catalogue : catalogue = CatalogueLoader.Load<MonologueCatalogue>();
 
@@ -50,7 +46,6 @@ public static class MonologueService
         played.Clear();
         reportedIds.Clear();
         activeView = null;
-        parent = null;
         Current = null;
         Started = null;
         Finished = null;
@@ -163,31 +158,13 @@ public static class MonologueService
         return null;
     }
 
-    public static bool Exists(MonologueId id) => id.IsValid && Catalogue.TryGet(id.Value, out var monologue) && monologue != null;
-
     public static bool HasPlayed(MonologueId id) => played.Contains(id.Value);
-
-    public static void MarkPlayed(MonologueId id)
-    {
-        if (id.IsValid) played.Add(id.Value);
-    }
 
     public static void ClearHistory() => played.Clear();
 
     #endregion
 
     #region Views
-
-    public static void SetParent(Transform canvas)
-    {
-        parent = canvas;
-        foreach (var view in views.Values)
-        {
-            if (view == null) continue;
-            view.transform.SetParent(parent, false);
-            if (parent == null) Object.DontDestroyOnLoad(view.gameObject);
-        }
-    }
 
     private static MonologueView ResolveView(MonologueDefinition monologue)
     {
@@ -203,9 +180,9 @@ public static class MonologueService
         if (views.TryGetValue(prefab, out var existing) && existing != null) return existing;
         if (brokenPrefabs.Contains(prefab)) return null;
 
-        var instance = Object.Instantiate(prefab, parent, false);
+        var instance = Object.Instantiate(prefab);
         instance.name = prefab.name;
-        if (parent == null) Object.DontDestroyOnLoad(instance);
+        Object.DontDestroyOnLoad(instance);
 
         var view = instance.GetComponent<MonologueView>();
         if (view == null)

@@ -15,4 +15,5 @@ MonoBehaviour:
   viewPrefab: {fileID: 2050570257664301090, guid: 38f2cc46412e745b3a6fcf00878fe90e, type: 3}
   canvasSortOrder: 500
   monologues:
-  - {fileID: 11400000, guid: 118142984d6a845afa4e7204cea4b764, type: 2}
+  - {fileID: 11400000, guid: d7a34b1c92fad485e92d3024d2d49a35, type: 2}
+  - {fileID: 11400000, guid: 2938741dc1cfe49d9a1e81d2bdc2afb0, type: 2}

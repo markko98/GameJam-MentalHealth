@@ -1,19 +1,15 @@
 using System;
 using System.Collections.Generic;
-using JeffGrawAssets.FlexibleUI;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-// Canvas parallax: one child per layer, created and sorted from the layer list. A layer is either
-// a prefab - it keeps its own visuals and children, the script only places and slides it - or just
-// a sprite the script shows in a FlexibleImage of its own. layers[0] is the farthest background,
-// the last entry the closest foreground. A child is only recreated when its prefab reference
-// changes, so scene and prefab edits survive a rebuild.
+// Canvas parallax: one prefab instance per layer, created and sorted from the layer list.
+// layers[0] is the farthest background, the last entry the closest foreground. A child is only
+// recreated when its prefab reference changes, so scene and prefab edits survive a rebuild.
 [DisallowMultipleComponent]
 [RequireComponent(typeof(RectTransform))]
 public class UIParallax : MonoBehaviour
@@ -36,14 +32,9 @@ public class UIParallax : MonoBehaviour
     public class Layer
     {
         public string name = "Layer";
-        [Tooltip("Prefab shown for this layer. Empty = the script builds a FlexibleImage from the sprite below.")]
         public GameObject prefab;
-        [Tooltip("Only used when there is no prefab.")]
-        public Sprite sprite;
-        [Tooltip("Only used when there is no prefab.")]
-        public Color tint = Color.white;
         [Tooltip("Decoration turns the pointer off for everything in the layer, so it never blocks " +
-                 "the layers behind it. Interactable keeps a prefab's own button, or adds one for a sprite.")]
+                 "the layers behind it. Interactable leaves the prefab's own raycast setup alone.")]
         public LayerKind kind = LayerKind.Decoration;
         [Tooltip("Fill Parent stretches the layer over the parent (full-screen art). Keep Own " +
                  "Layout leaves the prefab's size and position alone and only slides it.")]
@@ -52,14 +43,9 @@ public class UIParallax : MonoBehaviour
         [Range(0f, 1f)] public float depth = 0.5f;
         [Tooltip("Off deactivates the layer without removing it from the list.")]
         public bool visible = true;
-
-        [Header("Interactable only")]
-        [Tooltip("Only pixels above this alpha react to the pointer, so transparent parts let the " +
-                 "layers behind through. Needs Read/Write Enabled on the texture. 0 = the whole rect.")]
+        [Tooltip("Interactable only: pixels below this alpha let the pointer through, so the " +
+                 "transparent part does not block. Needs Read/Write Enabled on the texture.")]
         [Range(0f, 1f)] public float alphaHitThreshold;
-        public UnityEvent onClick;
-        public UnityEvent onPointerEnter;
-        public UnityEvent onPointerExit;
     }
 
     [Serializable]
@@ -97,12 +83,15 @@ public class UIParallax : MonoBehaviour
 
     [SerializeField, HideInInspector] private List<Child> children = new List<Child>();
 
+    private static readonly HashSet<Image> reportedTextures = new HashSet<Image>();
+
     private Vector2 focus;
     private Vector2 focusVelocity;
     private Vector2? externalFocus;
     private float strength = 1f;
     private bool syncQueued;
 
+    /// <summary>Master multiplier, 0 - 1: fades the whole effect out without touching the layers.</summary>
     public float Strength
     {
         get => strength;
@@ -111,20 +100,9 @@ public class UIParallax : MonoBehaviour
 
     public int LayerCount => layers.Count;
 
-    public event Action<int> LayerClicked;
-    public event Action<int, bool> LayerHovered;
-
     public RectTransform GetLayer(int index) => index >= 0 && index < children.Count ? children[index].root : null;
 
     public RectTransform GetLayer(string layerName) => GetLayer(IndexOf(layerName));
-
-    public FlexibleImage GetLayerImage(int index)
-    {
-        var root = GetLayer(index);
-        return root != null ? root.GetComponentInChildren<FlexibleImage>(true) : null;
-    }
-
-    public FlexibleImage GetLayerImage(string layerName) => GetLayerImage(IndexOf(layerName));
 
     public int IndexOf(string layerName)
     {
@@ -136,33 +114,11 @@ public class UIParallax : MonoBehaviour
         return -1;
     }
 
+    /// <summary>Points the parallax at a spot instead of the pointer: (-1,-1) bottom left, (1,1) top right.</summary>
     public void SetFocus(Vector2 normalizedFocus) => externalFocus = new Vector2(
         Mathf.Clamp(normalizedFocus.x, -1f, 1f), Mathf.Clamp(normalizedFocus.y, -1f, 1f));
 
     public void ClearFocus() => externalFocus = null;
-
-    public void SetInteractable(int index, bool interactable)
-    {
-        var root = GetLayer(index);
-        if (root != null && root.TryGetComponent<UIParallaxLayer>(out var input)) input.interactable = interactable;
-    }
-
-    internal void NotifyClick(int index)
-    {
-        if (index < 0 || index >= layers.Count) return;
-
-        layers[index].onClick?.Invoke();
-        LayerClicked?.Invoke(index);
-    }
-
-    internal void NotifyHover(int index, bool entered)
-    {
-        if (index < 0 || index >= layers.Count) return;
-
-        if (entered) layers[index].onPointerEnter?.Invoke();
-        else layers[index].onPointerExit?.Invoke();
-        LayerHovered?.Invoke(index, entered);
-    }
 
     [ContextMenu("Rebuild Layers")]
     public void Rebuild()
@@ -181,7 +137,7 @@ public class UIParallax : MonoBehaviour
         {
             if (layers[i] == null) layers[i] = new Layer();
             EnsureChild(i);
-            ApplyLayer(i);
+            if (children[i].root != null) ApplyLayer(i);
         }
 
         RemoveOrphans();
@@ -235,36 +191,29 @@ public class UIParallax : MonoBehaviour
     private void EnsureChild(int index)
     {
         var child = children[index];
-        if (child.root != null && child.prefab == layers[index].prefab) return;
+        var prefab = layers[index].prefab;
+
+        if (child.root != null && child.prefab == prefab) return;
 
         DestroyChild(child);
-        child.root = CreateChild(layers[index]);
-        child.prefab = layers[index].prefab;
+        if (prefab == null) return;
+
+        child.root = CreateChild(prefab);
+        child.prefab = prefab;
         child.appliedOffset = Vector2.zero;
     }
 
-    private RectTransform CreateChild(Layer layer)
+    private RectTransform CreateChild(GameObject prefab)
     {
-        GameObject instance;
-        if (layer.prefab != null)
-        {
 #if UNITY_EDITOR
-            // InstantiatePrefab keeps the instance linked to the asset, so prefab edits still apply.
-            instance = !Application.isPlaying && PrefabUtility.IsPartOfPrefabAsset(layer.prefab)
-                ? (GameObject)PrefabUtility.InstantiatePrefab(layer.prefab, transform)
-                : Instantiate(layer.prefab, transform);
-#else
-            instance = Instantiate(layer.prefab, transform);
-#endif
-        }
-        else
-        {
-            instance = new GameObject(ChildPrefix, typeof(RectTransform), typeof(CanvasRenderer), typeof(FlexibleImage));
-            instance.transform.SetParent(transform, false);
-        }
+        // InstantiatePrefab keeps the instance linked to the asset, so prefab edits still apply.
+        var instance = !Application.isPlaying && PrefabUtility.IsPartOfPrefabAsset(prefab)
+            ? (GameObject)PrefabUtility.InstantiatePrefab(prefab, transform)
+            : Instantiate(prefab, transform);
 
-#if UNITY_EDITOR
         if (!Application.isPlaying) Undo.RegisterCreatedObjectUndo(instance, "Add Parallax Layer");
+#else
+        var instance = Instantiate(prefab, transform);
 #endif
 
         return instance.transform as RectTransform ?? instance.AddComponent<RectTransform>();
@@ -281,23 +230,13 @@ public class UIParallax : MonoBehaviour
         rect.SetSiblingIndex(index);
         if (rect.gameObject.activeSelf != layer.visible) rect.gameObject.SetActive(layer.visible);
 
-        if (layer.prefab == null) ApplySprite(layer, rect);
         if (layer.fit == LayerFit.FillParent) StretchToParent(layer, rect);
 
         child.basePosition = layer.fit == LayerFit.FillParent
             ? Vector2.zero
             : rect.anchoredPosition - child.appliedOffset;
 
-        ApplyInteraction(index, layer, rect);
-    }
-
-    private void ApplySprite(Layer layer, RectTransform rect)
-    {
-        var image = rect.GetComponent<FlexibleImage>() ?? rect.gameObject.AddComponent<FlexibleImage>();
-        image.sprite = layer.sprite;
-        image.color = layer.tint;
-        image.type = Image.Type.Simple;
-        image.enabled = layer.sprite != null;
+        ApplyInteraction(layer, rect);
     }
 
     private void StretchToParent(Layer layer, RectTransform rect)
@@ -313,86 +252,35 @@ public class UIParallax : MonoBehaviour
         rect.sizeDelta = new Vector2(padding * 2f, padding * 2f);
     }
 
-    private void ApplyInteraction(int index, Layer layer, RectTransform rect)
+    private static void ApplyInteraction(Layer layer, RectTransform rect)
     {
-        var input = rect.GetComponent<UIParallaxLayer>();
-        var graphics = rect.GetComponentsInChildren<Graphic>(true);
+        var isInteractable = layer.kind == LayerKind.Interactable;
 
-        // A decoration layer never takes the pointer, so full-screen art cannot swallow the clicks
-        // meant for the layers behind it.
-        if (layer.kind != LayerKind.Interactable)
+        foreach (var graphic in rect.GetComponentsInChildren<Graphic>(true))
         {
-            foreach (var graphic in graphics) graphic.raycastTarget = false;
-            ClearOurSelectable(rect, input);
-            if (input != null) DestroyNow(input);
-            return;
+            // A decoration layer never takes the pointer, so full-screen art cannot swallow the
+            // clicks meant for the layers behind it.
+            if (!isInteractable)
+            {
+                graphic.raycastTarget = false;
+                continue;
+            }
+
+            if (layer.alphaHitThreshold <= 0f || !(graphic is Image image)) continue;
+
+            // Unity throws instead of ignoring it when the texture cannot be read on the CPU.
+            try
+            {
+                image.alphaHitTestMinimumThreshold = layer.alphaHitThreshold;
+            }
+            catch (InvalidOperationException)
+            {
+                if (reportedTextures.Add(image)) 
+                    Debug.LogWarning($"[UIParallax] \"{layer.name}\" wants alpha hit testing, but " +
+                                     $"\"{image.sprite?.name}\" has no Read/Write Enabled - tick it in the " +
+                                     "texture's import settings, or set Alpha Hit Threshold back to 0.", image);
+            }
         }
-
-        ApplyAlphaThreshold(graphics, layer.alphaHitThreshold);
-
-        // A prefab that brought its own button keeps its own setup - we only make sure the graphic
-        // it points at can be hit.
-        var own = FindForeignSelectable(rect, input);
-        if (own != null)
-        {
-            ClearOurSelectable(rect, input);
-            if (input != null) DestroyNow(input);
-            if (own.targetGraphic != null) own.targetGraphic.raycastTarget = true;
-            return;
-        }
-
-        if (input == null) input = AddLayerInput(rect.gameObject);
-        input.parallax = this;
-        input.index = index;
-        input.transition = Selectable.Transition.None;
-
-        var hit = rect.GetComponent<Graphic>();
-        if (hit == null && graphics.Length > 0) hit = graphics[0];
-        input.targetGraphic = hit;
-        if (hit != null) hit.raycastTarget = true;
-
-        // Hover and press states of any FlexibleImage that isn't already driven by its own Selectable.
-        foreach (var flexible in rect.GetComponentsInChildren<FlexibleImage>(true))
-        {
-            if (flexible.animationMode == FlexibleImage.AnimationStateDrivenBy.Selectable && flexible.selectable == null)
-                flexible.selectable = input;
-        }
-    }
-
-    private static void ApplyAlphaThreshold(Graphic[] graphics, float threshold)
-    {
-        foreach (var graphic in graphics)
-        {
-            if (graphic is Image image) image.alphaHitTestMinimumThreshold = threshold;
-        }
-    }
-
-    private static Selectable FindForeignSelectable(RectTransform rect, UIParallaxLayer input)
-    {
-        foreach (var selectable in rect.GetComponentsInChildren<Selectable>(true))
-        {
-            if (selectable != input) return selectable;
-        }
-
-        return null;
-    }
-
-    private static void ClearOurSelectable(RectTransform rect, UIParallaxLayer input)
-    {
-        if (input == null) return;
-
-        foreach (var flexible in rect.GetComponentsInChildren<FlexibleImage>(true))
-        {
-            if (flexible.selectable == input) flexible.selectable = null;
-        }
-    }
-
-    private static UIParallaxLayer AddLayerInput(GameObject target)
-    {
-#if UNITY_EDITOR
-        if (!Application.isPlaying) return Undo.AddComponent<UIParallaxLayer>(target);
-#endif
-        return target.AddComponent<UIParallaxLayer>();
     }
 
     private void Awake()

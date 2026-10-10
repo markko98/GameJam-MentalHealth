@@ -165,8 +165,8 @@ MonoBehaviour:
   _instanceQuadDataContainer:
     editorSelectedQuadIdx: 0
     _quadDataList:
-    - editorSelectedAnimationState: 0
-      editorSelectedAnimationSubState: 0
+    - editorSelectedAnimationState: 1
+      editorSelectedAnimationSubState: -1
       _outlineConfig:
         rid: -2
       _gradientConfig:

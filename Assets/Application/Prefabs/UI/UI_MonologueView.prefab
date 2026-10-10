@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3779901727996932070
 RectTransform:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 3577828222001725702, guid: 349e6f511f352461ca9c3f788baff95e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5999497837764710199, guid: 2817af8c1bd7db0439d5811fe2dd40e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -606,10 +606,10 @@ MonoBehaviour:
           sizeModifier: {x: 0, y: 0}
           softness: 1
           rotation: 0
-          cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
+          cornerChamfer: {x: 128, y: 128, z: 128, w: 128}
           cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
           primaryColors:
-          - {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+          - {r: 0, g: 0, b: 0, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
@@ -621,7 +621,7 @@ MonoBehaviour:
           primaryColorOffset: {x: 0, y: 0}
           primaryColorRotation: 0
           primaryColorScale: {x: 1, y: 1}
-          primaryColorFade: 154
+          primaryColorFade: 123
         playbackType: 0
         loopStartIdx: 0
         unwindToIdx: -1
@@ -893,11 +893,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -112
+      value: -311.99988
       objectReference: {fileID: 0}
     - target: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -140
+      value: -64
       objectReference: {fileID: 0}
     - target: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_LocalPosition.x
@@ -929,11 +929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 100.00007
       objectReference: {fileID: 0}
     - target: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

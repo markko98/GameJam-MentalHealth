@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum GameMode
 {
@@ -17,24 +18,42 @@ public class GameplayController : USceneController
     public override void SceneDidLoad()
     {
         base.SceneDidLoad();
+        MonologueService.ClearHistory();
         outlet = GameObject.Find(OutletNames.Gameplay).GetComponent<GameplayOutlet>();
+        SubscribeToEvents();
+        
+        GameModeHandler.Set(GameMode.Task);
+        outlet.playButton.Register(StartGame);
+        // StartDemoMonologue();
+
+        GameTicker.SharedInstance.Update += DebugModeKeys;
+    }
+
+    private void DebugModeKeys()
+    {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
+
+        if (keyboard.digit1Key.wasPressedThisFrame) GameModeHandler.Set(GameMode.Break);
+        else if (keyboard.digit2Key.wasPressedThisFrame) GameModeHandler.Set(GameMode.Task);
+        else if (keyboard.digit3Key.wasPressedThisFrame) StartBurnoutMonologue();
+    }
+    private void SubscribeToEvents()
+    {
         modeChangedEvent = new EventBinding<ModeChangedEvent>(OnModeChanged);
         UEventBus<ModeChangedEvent>.Register(modeChangedEvent);
         itemClickedBinding = new EventBinding<ItemClickedEvent>(OnItemClicked);
         UEventBus<ItemClickedEvent>.Register(itemClickedBinding);
-        StartDemoMonologue();
     }
-
     private void OnModeChanged(ModeChangedEvent mode)
     {
-        // depending on mode enable/disable items
-        // zoom camera in to desktop on task mode
-        // zoom out camera out on break mode
+        // zoom, parallax and what is clickable are handled by GameModeHandler / GameModeInteractable;
+        // gameplay reactions to a mode change (monologues, sounds, timers) go here
     }
 
-    private void StartDemoMonologue()
+    private void StartBurnoutMonologue()
     {
-        MonologueService.Play(MonologueIds.Dialogue_Intro);
+        MonologueService.Play(MonologueIds.Burnout_Indicator);
     }
 
     public override void SceneWillAppear()
@@ -42,21 +61,22 @@ public class GameplayController : USceneController
         base.SceneWillAppear();
     }
 
-    public override void SceneWillDisappear()
-    {
-        base.SceneWillDisappear();
-        outlet.playButton.Register(StartGame);
-        MonologueService.Stop(true);
-        MonologueService.ClearHistory();
-        UEventBus<ItemClickedEvent>.Deregister(itemClickedBinding);
-    }
-
     private void StartGame()
     {
-        // TODO: turn screen on
+        // turn screen on
+        PlayDesktopUnlock();
         // hide buttons
         // enable input
     }
+    
+    private void PlayDesktopUnlock()
+    {
+        outlet.desktopUnlock.PlayState(FlexibleState.Highlighted); // otključaj ekran
+        outlet.desktopUnlock.raycastTarget = false;
+        outlet.playButton.interactable = false;
+        outlet.playButton.gameObject.SetActive(false);
+    }
+
     
     private void OnItemClicked(ItemClickedEvent data)
     {
@@ -82,5 +102,16 @@ public class GameplayController : USceneController
         // MonologueService.Play(MonologueIds.ma);
         // show black screen and play purring sound
         Debug.Log("Playing Item_Polaroid_Friends");
+    }
+
+    public override void SceneWillDisappear()
+    {
+        base.SceneWillDisappear();
+        outlet.playButton.Unregister(StartGame);
+        MonologueService.Stop(true);
+        MonologueService.ClearHistory();
+        UEventBus<ItemClickedEvent>.Deregister(itemClickedBinding);
+        UEventBus<ModeChangedEvent>.Deregister(modeChangedEvent);
+        GameTicker.SharedInstance.Update -= DebugModeKeys;
     }
 }
