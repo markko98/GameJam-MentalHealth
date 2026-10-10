@@ -121,7 +121,7 @@ MonoBehaviour:
   _instanceQuadDataContainer:
     editorSelectedQuadIdx: 0
     _quadDataList:
-    - editorSelectedAnimationState: 1
+    - editorSelectedAnimationState: 0
       editorSelectedAnimationSubState: 0
       _outlineConfig:
         rid: -2
@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656ea74bb6e47438cbcf251e79eb855c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickableItem
-  id: 
-  button: {fileID: 0}
+  id: Item_Maca
+  button: {fileID: 7553626507690316016}
   onClick:
     m_PersistentCalls:
       m_Calls: []
@@ -331,8 +331,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6552437272021739376}
   - component: {fileID: 3716386875386828105}
-  - component: {fileID: 1627499065820496150}
-  - component: {fileID: -1351396819841989765}
   m_Layer: 0
   m_Name: Layer_4_Maca
   m_TagString: Untagged
@@ -368,78 +366,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3918647474683058686}
   m_CullTransparentMesh: 1
---- !u!114 &1627499065820496150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3918647474683058686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6b610660eb7425eaa47cfedce1334f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIParallaxLayer
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 4237156938752648288}
-  parallax: {fileID: 0}
-  index: 4
---- !u!114 &-1351396819841989765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3918647474683058686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c525263d10234bdfb2a3a691523fd7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIOutlineGlow
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.85, b: 0.45, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  target: {fileID: 4237156938752648288}
-  sprite: {fileID: 0}
-  outlineWidth: 6
-  softness: 3
-  glowWidth: 16
-  glowStrength: 0.65
-  idleIntensity: 0
-  hoverIntensity: 1
-  fadeDuration: 0.12
-  selectable: {fileID: 0}
-  followPointer: 1
-  previewHighlighted: 1

@@ -64,8 +64,8 @@ public class GameplayController : USceneController
         {
             case "Item_Maca":
                 PlayCatView(); break;
-            case "Item_Slika1":
-                PlayCatView(); break;
+            case "Item_Polaroid_Friends":
+                PlaySlika1View(); break;
             // case "Monitor":; break;
         }
     }
@@ -81,6 +81,6 @@ public class GameplayController : USceneController
     {
         // MonologueService.Play(MonologueIds.ma);
         // show black screen and play purring sound
-        Debug.Log("Playing Slika1");
+        Debug.Log("Playing Item_Polaroid_Friends");
     }
 }

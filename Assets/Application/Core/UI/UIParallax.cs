@@ -42,7 +42,8 @@ public class UIParallax : MonoBehaviour
         public Sprite sprite;
         [Tooltip("Only used when there is no prefab.")]
         public Color tint = Color.white;
-        [Tooltip("Interactable layers take clicks and hover; decoration layers ignore the pointer.")]
+        [Tooltip("Decoration turns the pointer off for everything in the layer, so it never blocks " +
+                 "the layers behind it. Interactable keeps a prefab's own button, or adds one for a sprite.")]
         public LayerKind kind = LayerKind.Decoration;
         [Tooltip("Fill Parent stretches the layer over the parent (full-screen art). Keep Own " +
                  "Layout leaves the prefab's size and position alone and only slides it.")]
@@ -53,8 +54,8 @@ public class UIParallax : MonoBehaviour
         public bool visible = true;
 
         [Header("Interactable only")]
-        [Tooltip("Only pixels above this alpha react to the pointer. Needs Read/Write Enabled on " +
-                 "the texture. 0 = the whole rect reacts.")]
+        [Tooltip("Only pixels above this alpha react to the pointer, so transparent parts let the " +
+                 "layers behind through. Needs Read/Write Enabled on the texture. 0 = the whole rect.")]
         [Range(0f, 1f)] public float alphaHitThreshold;
         public UnityEvent onClick;
         public UnityEvent onPointerEnter;
@@ -315,16 +316,28 @@ public class UIParallax : MonoBehaviour
     private void ApplyInteraction(int index, Layer layer, RectTransform rect)
     {
         var input = rect.GetComponent<UIParallaxLayer>();
+        var graphics = rect.GetComponentsInChildren<Graphic>(true);
 
+        // A decoration layer never takes the pointer, so full-screen art cannot swallow the clicks
+        // meant for the layers behind it.
         if (layer.kind != LayerKind.Interactable)
         {
-            foreach (var flexible in rect.GetComponentsInChildren<FlexibleImage>(true))
-            {
-                if (flexible.selectable == input) flexible.selectable = null;
-            }
-
+            foreach (var graphic in graphics) graphic.raycastTarget = false;
+            ClearOurSelectable(rect, input);
             if (input != null) DestroyNow(input);
-            if (layer.prefab == null && rect.TryGetComponent<Graphic>(out var graphic)) graphic.raycastTarget = false;
+            return;
+        }
+
+        ApplyAlphaThreshold(graphics, layer.alphaHitThreshold);
+
+        // A prefab that brought its own button keeps its own setup - we only make sure the graphic
+        // it points at can be hit.
+        var own = FindForeignSelectable(rect, input);
+        if (own != null)
+        {
+            ClearOurSelectable(rect, input);
+            if (input != null) DestroyNow(input);
+            if (own.targetGraphic != null) own.targetGraphic.raycastTarget = true;
             return;
         }
 
@@ -333,16 +346,44 @@ public class UIParallax : MonoBehaviour
         input.index = index;
         input.transition = Selectable.Transition.None;
 
-        var target = rect.GetComponent<Graphic>() ?? rect.GetComponentInChildren<Graphic>(true);
-        input.targetGraphic = target;
-        if (target != null) target.raycastTarget = true;
-        if (target is Image image) image.alphaHitTestMinimumThreshold = layer.alphaHitThreshold;
+        var hit = rect.GetComponent<Graphic>();
+        if (hit == null && graphics.Length > 0) hit = graphics[0];
+        input.targetGraphic = hit;
+        if (hit != null) hit.raycastTarget = true;
 
         // Hover and press states of any FlexibleImage that isn't already driven by its own Selectable.
         foreach (var flexible in rect.GetComponentsInChildren<FlexibleImage>(true))
         {
             if (flexible.animationMode == FlexibleImage.AnimationStateDrivenBy.Selectable && flexible.selectable == null)
                 flexible.selectable = input;
+        }
+    }
+
+    private static void ApplyAlphaThreshold(Graphic[] graphics, float threshold)
+    {
+        foreach (var graphic in graphics)
+        {
+            if (graphic is Image image) image.alphaHitTestMinimumThreshold = threshold;
+        }
+    }
+
+    private static Selectable FindForeignSelectable(RectTransform rect, UIParallaxLayer input)
+    {
+        foreach (var selectable in rect.GetComponentsInChildren<Selectable>(true))
+        {
+            if (selectable != input) return selectable;
+        }
+
+        return null;
+    }
+
+    private static void ClearOurSelectable(RectTransform rect, UIParallaxLayer input)
+    {
+        if (input == null) return;
+
+        foreach (var flexible in rect.GetComponentsInChildren<FlexibleImage>(true))
+        {
+            if (flexible.selectable == input) flexible.selectable = null;
         }
     }
 
