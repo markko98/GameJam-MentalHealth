@@ -38,7 +38,7 @@ public class GameplayController : USceneController
 
     private void OpenEyelid()
     {
-        outlet.eyelids.Open(1);
+        outlet.eyelids.Open(3);
     }
 
     private void DebugModeKeys()
@@ -49,6 +49,7 @@ public class GameplayController : USceneController
         if (keyboard.digit1Key.wasPressedThisFrame) GameModeHandler.Set(GameMode.Break);
         else if (keyboard.digit2Key.wasPressedThisFrame) GameModeHandler.Set(GameMode.Task);
         else if (keyboard.digit3Key.wasPressedThisFrame) StartBurnoutMonologue();
+        else if (keyboard.digit4Key.wasPressedThisFrame) outlet.eyelids.Blink();
     }
     private void SubscribeToEvents()
     {
