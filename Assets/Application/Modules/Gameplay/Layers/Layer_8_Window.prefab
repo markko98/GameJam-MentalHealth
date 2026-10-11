@@ -83,7 +83,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 800, y: 1}
+  m_AnchoredPosition: {x: 800, y: 175}
   m_SizeDelta: {x: 338, y: 724}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &248436784059925932
@@ -168,7 +168,7 @@ MonoBehaviour:
   _instanceQuadDataContainer:
     editorSelectedQuadIdx: 0
     _quadDataList:
-    - editorSelectedAnimationState: 0
+    - editorSelectedAnimationState: 1
       editorSelectedAnimationSubState: 0
       _outlineConfig:
         rid: -2
@@ -247,13 +247,13 @@ MonoBehaviour:
           duration: 0.5
           uvRect: {x: 0, y: 0, z: 1, w: 1}
           offset: {x: 0, y: 0}
-          sizeModifier: {x: 1.2, y: 1.2}
+          sizeModifier: {x: 0, y: 0}
           softness: 5
-          rotation: 25
+          rotation: 0
           cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
           cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
           primaryColors:
-          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 0.92347264, b: 0.4669811, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656ea74bb6e47438cbcf251e79eb855c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickableItem
-  id: Item_Polaroid_Friends
+  id: Item_Window
   button: {fileID: 7064200252609080716}
   onClick:
     m_PersistentCalls:

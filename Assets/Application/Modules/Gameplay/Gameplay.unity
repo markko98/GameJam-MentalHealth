@@ -318,6 +318,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &297737855
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DefaultProceduralBlurredImage
+  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _DstBlend: 10
+    - _SrcBlend: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &302042318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -408,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5837353561198113422, guid: 7b4a67682e5b245d7ae59a4907c6cdeb, type: 3}
       propertyPath: m_Name
-      value: Layer_6_Plant
+      value: Layer_7_Plant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -430,7 +471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3918647474683058686, guid: 4b0be61a5eaeb4063bc097c99a1e4cdf, type: 3}
       propertyPath: m_Name
-      value: Layer_5_Maca
+      value: Layer_6_Maca
       objectReference: {fileID: 0}
     - target: {fileID: 6552437272021739376, guid: 4b0be61a5eaeb4063bc097c99a1e4cdf, type: 3}
       propertyPath: m_Pivot.x
@@ -527,7 +568,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1013500206630863394, guid: c978c560e11d04646ad1dbb4bca8e3a8, type: 3}
       propertyPath: m_Name
-      value: Layer_4_Polaroid_Friends
+      value: Layer_5_Polaroid_Friends
       objectReference: {fileID: 0}
     - target: {fileID: 9165768306845043563, guid: c978c560e11d04646ad1dbb4bca8e3a8, type: 3}
       propertyPath: m_Pivot.x
@@ -624,7 +665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1013500206630863394, guid: 87cd0fbb64df3420080a4d57050e605c, type: 3}
       propertyPath: m_Name
-      value: Layer_7_Chair
+      value: Layer_8_Chair
       objectReference: {fileID: 0}
     - target: {fileID: 9165768306845043563, guid: 87cd0fbb64df3420080a4d57050e605c, type: 3}
       propertyPath: m_Pivot.x
@@ -752,6 +793,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1557070966}
+  - {fileID: 2041458750}
   - {fileID: 356521528}
   - {fileID: 231719348}
   - {fileID: 1907000094}
@@ -759,7 +801,6 @@ RectTransform:
   - {fileID: 860646704}
   - {fileID: 2072991593}
   - {fileID: 1226274613}
-  - {fileID: 2041458750}
   - {fileID: 6366281019711798218}
   m_Father: {fileID: 7607314941941392791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -788,6 +829,13 @@ MonoBehaviour:
     depth: 0.1
     visible: 1
     alphaHitThreshold: 0
+  - name: Window
+    prefab: {fileID: 1013500206630863394, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
+    kind: 1
+    fit: 1
+    depth: 0.1
+    visible: 1
+    alphaHitThreshold: 0.012
   - name: Table
     prefab: {fileID: 2854589380790971999, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
     kind: 0
@@ -837,13 +885,6 @@ MonoBehaviour:
     depth: 1
     visible: 1
     alphaHitThreshold: 0
-  - name: Window
-    prefab: {fileID: 1013500206630863394, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
-    kind: 1
-    fit: 1
-    depth: 0.1
-    visible: 1
-    alphaHitThreshold: 0.012
   - name: Childhood
     prefab: {fileID: 1013500206630863394, guid: 7d53ea4ab433c4cfdbad7aedbf164f35, type: 3}
     kind: 1
@@ -863,6 +904,11 @@ MonoBehaviour:
   - root: {fileID: 1557070966}
     prefab: {fileID: 3123148933700925235, guid: e73b521fe4eb14b358e2c7e01c75eac3, type: 3}
     layerName: OfficeBackground
+    basePosition: {x: 0, y: 0}
+    appliedOffset: {x: 0, y: 0}
+  - root: {fileID: 2041458750}
+    prefab: {fileID: 1013500206630863394, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
+    layerName: Window
     basePosition: {x: 0, y: 0}
     appliedOffset: {x: 0, y: 0}
   - root: {fileID: 356521528}
@@ -898,11 +944,6 @@ MonoBehaviour:
   - root: {fileID: 1226274613}
     prefab: {fileID: 1013500206630863394, guid: 87cd0fbb64df3420080a4d57050e605c, type: 3}
     layerName: Chair
-    basePosition: {x: 0, y: 0}
-    appliedOffset: {x: 0, y: 0}
-  - root: {fileID: 2041458750}
-    prefab: {fileID: 1013500206630863394, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
-    layerName: Window
     basePosition: {x: 0, y: 0}
     appliedOffset: {x: 0, y: 0}
   - root: {fileID: 6366281019711798218}
@@ -960,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: JeffGrawAssets.FlexibleUI.Runtime::JeffGrawAssets.FlexibleUI.FlexibleImage
-  m_Material: {fileID: 1796213560}
+  m_Material: {fileID: 297737855}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1157,8 +1198,8 @@ MonoBehaviour:
   closeDuration: 1
   openDuration: 1
   autoBlink: 1
-  blinkInterval: {x: 10, y: 14}
-  tiredBlinkInterval: {x: 5, y: 7}
+  blinkInterval: {x: 13, y: 16}
+  tiredBlinkInterval: {x: 7, y: 10}
   tiredDuration: {x: 10, y: 15}
   heavyBlinkLight: {x: 0.25, y: 0.1, z: 0.4}
   heavyBlinkFull: {x: 1, y: 0.8, z: 1.6}
@@ -1252,7 +1293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7178668829238940115, guid: 29038a41372a64bd38dc6213dbc05a44, type: 3}
       propertyPath: m_Name
-      value: Layer_2_Board
+      value: Layer_3_Board
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1598,7 +1639,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2854589380790971999, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
       propertyPath: m_Name
-      value: Layer_1_Table
+      value: Layer_2_Table
       objectReference: {fileID: 0}
     - target: {fileID: 4135676703042464856, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
       propertyPath: m_Pivot.x
@@ -1679,6 +1720,18 @@ PrefabInstance:
     - target: {fileID: 4135676703042464856, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283360052286638674, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 1319237696}
+    - target: {fileID: 7283360052286638674, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
+      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283360052286638674, guid: dc60790fe78b44f83b49e197b265932e, type: 3}
+      propertyPath: _instanceQuadDataContainer._quadDataList.Array.data[0].editorSelectedAnimationSubState
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1955,6 +2008,47 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9165768306845043563, guid: 87cd0fbb64df3420080a4d57050e605c, type: 3}
   m_PrefabInstance: {fileID: 545977242}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1319237696
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DefaultProceduralBlurredImage
+  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _DstBlend: 10
+    - _SrcBlend: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1433476868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8443639158088451593, guid: c4f6603d271ea4f72b6b1b573eb8dc80, type: 3}
@@ -2073,9 +2167,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3798792330027044913, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -34
+      objectReference: {fileID: 0}
     - target: {fileID: 4290795862157537243, guid: c3ad688fe245f46279459869362533ec, type: 3}
       propertyPath: m_Name
-      value: Layer_3_Desktop
+      value: Layer_4_Desktop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000639495733164364, guid: c3ad688fe245f46279459869362533ec, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2191,47 +2293,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1796213560
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultProceduralBlurredImage
-  m_Shader: {fileID: 4800000, guid: 7bcbcdd914cb088429f2913c88c7bdff, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _DstBlend: 10
-    - _SrcBlend: 5
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!224 &1907000094 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3404962883917629743, guid: c3ad688fe245f46279459869362533ec, type: 3}
@@ -2263,23 +2324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1013500206630863394, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
       propertyPath: m_Name
-      value: Layer_8_Window
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906085852426986062, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
-      propertyPath: id
-      value: Item_Window
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344678484499597424, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8944959598137300117, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 8944959598137300117, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 175
+      value: Layer_1_Window
       objectReference: {fileID: 0}
     - target: {fileID: 9165768306845043563, guid: b9369341d84f940398a55fea16f2d4d0, type: 3}
       propertyPath: m_Pivot.x
