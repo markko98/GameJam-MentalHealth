@@ -91,3 +91,37 @@ public class MailTaskDoneEvent : IEvent
 public class MeetingTaskDoneEvent : IEvent
 {
 }
+
+public class SlackCallAnsweredEvent : IEvent
+{
+}
+
+public class LogoTaskDoneEvent : IEvent
+{
+    public readonly bool creative;
+
+    public LogoTaskDoneEvent(bool creative)
+    {
+        this.creative = creative;
+    }
+}
+
+public class ImageColoringDoneEvent : IEvent
+{
+    public readonly UnityEngine.Sprite sprite;
+
+    public ImageColoringDoneEvent(UnityEngine.Sprite sprite)
+    {
+        this.sprite = sprite;
+    }
+}
+
+public class TimeChangedEvent : IEvent
+{
+    public readonly string time;
+
+    public TimeChangedEvent(string time)
+    {
+        this.time = time;
+    }
+}

@@ -13,4 +13,6 @@ public class GameplayOutlet : SceneControllerOutlet
     public InputHandler inputHandler;
     public CameraController cameraController;
     public UIButton folderIcon;
+    public DesktopUI desktopUI;
+    public ClickableItem window;
 }

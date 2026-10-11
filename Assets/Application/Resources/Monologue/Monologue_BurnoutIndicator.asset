@@ -16,20 +16,28 @@ MonoBehaviour:
   speaker: Mare
   portrait: {fileID: 0}
   lines:
-  - text: What the hell? Were they messing with my computer again?
+  - text: What the hell is that?
     speaker: 
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: Burnout_Indicator_01
+      value: WhatTheHell
     charactersPerSecond: 0
     holdDuration: 0
-  - text: ' Oh, this must be the burnout indicator they mentioned.'
+  - text: Were they messing with my computer again?
     speaker: 
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: 
+      value: WereThey
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: Ah, this must be the burnout indicator HR mentioned.
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: ThatMustBe
     charactersPerSecond: 0
     holdDuration: 0
   - text: Apparently, burnout is a serious concern around here.
@@ -37,7 +45,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: 
+      value: Apparently
     charactersPerSecond: 0
     holdDuration: 0
   - text: So serious, that management has introduced a company-wide wellness initiative.
@@ -45,7 +53,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: 
+      value: SoSerious
     charactersPerSecond: 0
     holdDuration: 0
   charactersPerSecond: 0

@@ -14,9 +14,17 @@ public class ClickableItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] private UnityEvent onClick;
 
     public string Id => string.IsNullOrWhiteSpace(id) ? name : id.Trim();
+    public bool Clickable { get; set; } = true;
+
+    // Works when the item's button is a UIButton (see UIButton.SetHighlighted).
+    public void SetHighlighted(bool highlighted)
+    {
+        if (button is UIButton uiButton) uiButton.SetHighlighted(highlighted);
+    }
 
     public void Click()
     {
+        if (!Clickable) return;
         if (TryGetComponent<Selectable>(out var selectable) && !selectable.IsInteractable()) return;
 
         onClick?.Invoke();

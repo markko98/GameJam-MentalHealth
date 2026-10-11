@@ -7,6 +7,7 @@ public enum InteractionGroup
     None = 0,
     Desktop = 1 << 0,
     Items = 1 << 1,
+    Window = 1 << 2,
     All = ~0
 }
 

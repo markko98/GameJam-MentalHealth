@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9022c7a62da884cbd95368c39c76e4dd, type: 3}
+  m_Name: Monologue_AfterMailTask
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueDefinition
+  id: AfterMailTask
+  speaker: Mare
+  portrait: {fileID: 0}
+  lines:
+  - text: "Well this was\u2026 something."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: WellThisWasSomething
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: "Seems like we\u2019re just sending emails for the sake of sending them,
+      or to prove to each other that we\u2019re being productive."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: SeemsLike
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: 'I used to dream of being a fancy office worker climbing the corporate
+      ladder, while doing what I love most: design.'
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: IUsedToDream
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: "No, I\u2019m lying. Drawing was my real passion. Being ambitious was a
+      necessity."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: NoImLying
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: "This job seemed like the perfect fit back then. Now I\u2019m just swamped
+      with emails, meetings, waiting for feedback, and sometimes, designing."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: ThisJobSeemed
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: Sometimes when I feel like this, taking my eyes off the screen helps a
+      little.
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: SometimesWhenIFeel
+    charactersPerSecond: 0
+    holdDuration: 0
+  charactersPerSecond: 0
+  minLineDuration: 0
+  secondsPerCharacter: 0
+  lineFadeDuration: 0
+  autoAdvance: 0
+  skippable: 1
+  waitForVoice: 0
+  playOnce: 1
+  viewPrefab: {fileID: 0}
+  openSound:
+    value: 
+  closeSound:
+    value: 

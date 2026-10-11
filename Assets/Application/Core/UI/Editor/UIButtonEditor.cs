@@ -27,6 +27,14 @@ public class UIButtonEditor : ButtonEditor
                 holdFill.objectReferenceValue = CreateHoldFill((UIButton)target);
         }
 
+        var highlight = serializedObject.FindProperty("highlight");
+        EditorGUILayout.PropertyField(highlight);
+        if (highlight.objectReferenceValue != null || highlight.hasMultipleDifferentValues)
+        {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("highlightPulseScale"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("highlightPulseDuration"));
+        }
+
         serializedObject.ApplyModifiedProperties();
 
         EditorGUILayout.Space();

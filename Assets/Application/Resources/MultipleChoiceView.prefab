@@ -54,7 +54,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903604691563113868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a59bc799b067784ca9e98acde554c86, type: 3}
   m_Name: 
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultipleChoiceViewOutlet
   choicesParent: {fileID: 5058260190207609156}
-  choiceButtonPrefab: {fileID: 2449168323921253514, guid: d7d1e758c21c0a8418ccc4e15d26f7b9, type: 3}
+  choiceButtonPrefab: {fileID: 2449168323921253514, guid: ec838e2493209d34283b174c271b59a2, type: 3}
 --- !u!1001 &2792527666796767041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -950,6 +950,10 @@ PrefabInstance:
     - target: {fileID: 5795754357481352631, guid: d9aadd47629801c4aaaefda3a88f04f6, type: 3}
       propertyPath: m_Name
       value: UI_Button_Icon_Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795754357481352631, guid: d9aadd47629801c4aaaefda3a88f04f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5970843840406124664, guid: d9aadd47629801c4aaaefda3a88f04f6, type: 3}
       propertyPath: m_IsActive

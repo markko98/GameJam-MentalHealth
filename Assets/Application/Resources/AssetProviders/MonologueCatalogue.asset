@@ -17,3 +17,7 @@ MonoBehaviour:
   monologues:
   - {fileID: 11400000, guid: d7a34b1c92fad485e92d3024d2d49a35, type: 2}
   - {fileID: 11400000, guid: 2938741dc1cfe49d9a1e81d2bdc2afb0, type: 2}
+  - {fileID: 11400000, guid: 84fb5baa7bd41a24a96b249505a1717e, type: 2}
+  - {fileID: 11400000, guid: ff117832fcf47144f8a8951379ae0539, type: 2}
+  - {fileID: 11400000, guid: a8d47de45c8e4ff4cb525c5da10af8f6, type: 2}
+  - {fileID: 11400000, guid: e98c32fd726e5b144b94baa1280dc2ce, type: 2}

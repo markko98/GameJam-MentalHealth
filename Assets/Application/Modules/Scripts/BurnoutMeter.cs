@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class BurnoutMeter : MonoBehaviour
 {
-    private const float Max = 100f;
+    public const float Max = 100f;
 
     [SerializeField] private Slider slider;
     [SerializeField, Min(0f)] private float increaseDuration = 2f;

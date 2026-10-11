@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 using DG.Tweening;
+using JeffGrawAssets.FlexibleUI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,6 +27,12 @@ public class UIButton : Button
     [Tooltip("RectMask2D covering the button; its fill child is revealed left to right while holding.")]
     [SerializeField] private RectTransform holdFill;
 
+    [Tooltip("Optional extra (arrow, glow...) shown and pulsed by SetHighlighted, hidden again on click.")]
+    [SerializeField] private GameObject highlight;
+    [Tooltip("1 = no pulse.")]
+    [SerializeField, Min(1f)] private float highlightPulseScale = 1.1f;
+    [SerializeField, Min(0.01f)] private float highlightPulseDuration = 0.6f;
+
     private readonly UIListeners<UIButton> listeners = new UIListeners<UIButton>();
     private float nextClickTime;
     private Vector3 baseScale = Vector3.one;
@@ -33,6 +40,11 @@ public class UIButton : Button
     private bool isHolding;
     private Coroutine holdRoutine;
     private RectMask2D holdMask;
+    private Vector3 highlightBaseScale = Vector3.one;
+    private FlexibleImage flexibleGraphic;
+    private FlexibleImage.AnimationStateDrivenBy flexibleMode;
+    private bool isHighlighted;
+    private bool isPointerInside;
 
     public UILabel Label => label;
     public bool IsLocked => lockCount > 0;
@@ -71,12 +83,40 @@ public class UIButton : Button
         RefreshState();
     }
 
-    // Looks hovered without the pointer; a real hover takes over and clears it when the pointer leaves.
+    // A FlexibleImage target graphic plays its Selected state while highlighted (real hover still wins);
+    // the optional highlight object is shown and pulsed. With neither, it fakes a hover.
     public void SetHighlighted(bool highlighted)
     {
-        var eventData = new PointerEventData(EventSystem.current);
-        if (highlighted) base.OnPointerEnter(eventData);
-        else base.OnPointerExit(eventData);
+        isHighlighted = highlighted;
+
+        if (!HasCustomHighlight)
+        {
+            var eventData = new PointerEventData(EventSystem.current);
+            if (highlighted) base.OnPointerEnter(eventData);
+            else base.OnPointerExit(eventData);
+            return;
+        }
+
+        ApplyFlexibleHighlight();
+
+        if (highlight == null) return;
+
+        var target = highlight.transform;
+        target.DOKill();
+        target.localScale = highlightBaseScale;
+        highlight.SetActive(highlighted);
+        if (highlighted && highlightPulseScale > 1f)
+            target.DOScale(highlightBaseScale * highlightPulseScale, highlightPulseDuration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetUpdate(true);
+    }
+
+    private bool HasCustomHighlight => highlight != null || flexibleGraphic != null;
+
+    private void ApplyFlexibleHighlight()
+    {
+        if (flexibleGraphic == null) return;
+
+        if (isHighlighted && !isPointerInside) flexibleGraphic.PlayState(FlexibleState.Selected);
+        else flexibleGraphic.animationMode = flexibleMode;
     }
 
     public override bool IsInteractable() => base.IsInteractable() && lockCount == 0;
@@ -117,10 +157,19 @@ public class UIButton : Button
         ReleaseSelection(gameObject);
     }
 
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        isPointerInside = true;
+        ApplyFlexibleHighlight();
+    }
+
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
         isHolding = false;
+        isPointerInside = false;
+        ApplyFlexibleHighlight();
     }
 
     protected override void Awake()
@@ -129,6 +178,9 @@ public class UIButton : Button
         baseScale = transform.localScale;
         if (label == null) label = GetComponentInChildren<UILabel>(true);
         if (holdFill != null) holdFill.TryGetComponent(out holdMask);
+        if (highlight != null) highlightBaseScale = highlight.transform.localScale;
+        flexibleGraphic = targetGraphic as FlexibleImage;
+        if (flexibleGraphic != null) flexibleMode = flexibleGraphic.animationMode;
         ApplyHoldFill();
     }
 
@@ -140,6 +192,7 @@ public class UIButton : Button
         transform.DOKill();
         transform.localScale = baseScale;
         isHolding = false;
+        isPointerInside = false;
         holdRoutine = null;
         HoldProgress = 0f;
         ApplyHoldFill();
@@ -170,6 +223,7 @@ public class UIButton : Button
         if (!IsActive() || !IsInteractable() || Time.unscaledTime < nextClickTime) return false;
 
         nextClickTime = Time.unscaledTime + clickCooldown;
+        if (isHighlighted && HasCustomHighlight) SetHighlighted(false);
         if (clickSound.IsValid) AudioService.Play(clickSound);
         return true;
     }

@@ -4,6 +4,23 @@
 // changing a SoundCatalog outside the Inspector.
 public static class SoundIds
 {
-    public const string Burnout_Indicator_01 = "Burnout_Indicator_01";
-    public const string Burnout_Indicator_02 = "Burnout_Indicator_02";
+    public const string Apparently = "Apparently";
+    public const string AsIfIDontHave = "AsIfIDontHave";
+    public const string Idle = "Idle";
+    public const string IUsedToDream = "IUsedToDream";
+    public const string NoImLying = "NoImLying";
+    public const string RightTheMeeting = "RightTheMeeting";
+    public const string SeemsLike = "SeemsLike";
+    public const string slack = "slack";
+    public const string SomeChoices = "SomeChoices";
+    public const string SometimesWhenIFeel = "SometimesWhenIFeel";
+    public const string SoSerious = "SoSerious";
+    public const string ThatMustBe = "ThatMustBe";
+    public const string ThisJobSeemed = "ThisJobSeemed";
+    public const string ThisMeetingWasExausting = "ThisMeetingWasExausting";
+    public const string WellTheDeadlines = "WellTheDeadlines";
+    public const string WellThisWasSomething = "WellThisWasSomething";
+    public const string WereThey = "WereThey";
+    public const string WhatTheHell = "WhatTheHell";
+    public const string WithAllTheWork = "WithAllTheWork";
 }
