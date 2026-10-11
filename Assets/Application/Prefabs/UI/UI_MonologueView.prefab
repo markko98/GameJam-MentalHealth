@@ -766,15 +766,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6490864454644022390, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_text
-      value: "\u25BE"
+      value: Click...
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontColor.b
@@ -790,7 +790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontSizeBase
-      value: 40
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_RaycastTarget

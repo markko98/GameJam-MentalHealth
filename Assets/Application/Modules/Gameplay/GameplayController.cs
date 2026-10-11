@@ -49,6 +49,7 @@ public class GameplayController : USceneController
         uiStackController = new UIStackNavigationController(outlet.canvas.transform);
         SubscribeToEvents();
         outlet.burnoutMeter.Increased += OnBurnoutIncreased;
+        outlet.burnoutMeter.IncreaseBurnout(10f);
         
         outlet.eyelids.Close(0);
         GameModeInteractable.Allow(InteractionGroup.None);
@@ -58,6 +59,8 @@ public class GameplayController : USceneController
 
         DelayedExecutionManager.ExecuteActionAfterDelay(1000, OpenEyelid).disposeBy(disposeBag);
         GameTicker.SharedInstance.Update += DebugModeKeys;
+        AudioService.Play(SoundIds.Ambient1);
+        AudioService.Play(SoundIds.Ambient2);
     }
 
     private void StartInitialMonologue()
@@ -329,6 +332,9 @@ public class GameplayController : USceneController
                 PlayCatView(item); break;
             case "Item_Polaroid_Friends":
                 PlaySlika1View(item); break;
+            case "Item_Childhood":
+                PlaySlika2View(item); break;
+                
             // case "Monitor":; break;
         }
     }
@@ -350,6 +356,13 @@ public class GameplayController : USceneController
         PlayMemory(item.Id);
         ShowImageColoringView(GetSpriteForImage("Item_Polaroid_Friends"));
     }
+    private void PlaySlika2View(ClickableItem item)
+    {
+        Debug.Log("Playing childhood");
+        coloringItem = item;
+        PlayMemory(item.Id);
+        ShowImageColoringView(GetSpriteForImage("Item_Childhood"));
+    }
 
     private void OnImageColoringDone(ImageColoringDoneEvent data)
     {
@@ -370,6 +383,7 @@ public class GameplayController : USceneController
         {
             case "Item_Maca": return MonologueIds.Cat;
             case "Item_Polaroid_Friends": return MonologueIds.CampingTrip;
+            case "Item_Childhood": return MonologueIds.Ordinary;
             case "Item_Polaroid_Nonna": return MonologueIds.Nona;
             default: return null;
         }
@@ -442,6 +456,7 @@ public class GameplayController : USceneController
             return;
         }
         coloringView ??= new ImageColoringView(sprite, "ImageColoringView", outlet.canvas.transform, uiStackController);
+        coloringView.SetSprite(sprite);
         coloringView.PresentView(0.3f, AnimationType.ScaleUpFromMiddle);
     }
 
@@ -453,6 +468,8 @@ public class GameplayController : USceneController
                 return SpriteProvider.Sprites.item_Cat_Sprite;
             case "Item_Polaroid_Friends":
                 return SpriteProvider.Sprites.item_Polaroid_Friends_Sprite;
+            case "Item_Childhood":
+                return SpriteProvider.Sprites.item_Childhood_Sprite;
         }
 
         return SpriteProvider.Sprites.item_Cat_Sprite;
@@ -461,6 +478,7 @@ public class GameplayController : USceneController
     public override void SceneWillDisappear()
     {
         base.SceneWillDisappear();
+        AudioService.StopAll(0.5f);
         outlet.playButton.Unregister(StartGame);
         MonologueService.Stop(true);
         MonologueService.ClearHistory();

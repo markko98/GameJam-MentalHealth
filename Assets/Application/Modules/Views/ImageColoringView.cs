@@ -4,7 +4,7 @@ public class ImageColoringView : UIViewController
 {
     private ImageColoringViewOutlet outlet;
     private ImageColoring coloring;
-    private readonly Sprite sprite;
+    private Sprite sprite;
     private DisposeBag disposeBag;
     private bool doneRaised;
 
@@ -21,13 +21,17 @@ public class ImageColoringView : UIViewController
         outlet = view.GetComponentInChildren<ImageColoringViewOutlet>();
         if (!outlet.image.TryGetComponent(out coloring))
             coloring = outlet.image.gameObject.AddComponent<ImageColoring>();
-        coloring.Setup(sprite);
     }
+
+    // The view is reused (hidden, not destroyed) between openings - set the next picture before PresentView.
+    public void SetSprite(Sprite newSprite) => sprite = newSprite;
 
     public override void ViewWillAppear()
     {
         base.ViewWillAppear();
         disposeBag = new DisposeBag();
+        doneRaised = false;
+        coloring.Setup(sprite);
         outlet.closeButton.Register(Close);
         coloring.Completed += OnColoringCompleted;
     }

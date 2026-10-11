@@ -4,6 +4,8 @@
 // changing a SoundCatalog outside the Inspector.
 public static class SoundIds
 {
+    public const string Ambient1 = "Ambient1";
+    public const string Ambient2 = "Ambient2";
     public const string Apparently = "Apparently";
     public const string AsIfIDontHave = "AsIfIDontHave";
     public const string CampingTrip = "CampingTrip";

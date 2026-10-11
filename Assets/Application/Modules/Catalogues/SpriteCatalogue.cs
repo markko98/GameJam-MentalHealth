@@ -10,4 +10,5 @@ public class SpriteCatalogue : ScriptableObject
     public Sprite item_Polaroid_Friends_Sprite;
     public Sprite item_Polaroid_Nonna_Sprite;
     public Sprite item_Cat_Sprite;
+    public Sprite item_Childhood_Sprite;
 }
