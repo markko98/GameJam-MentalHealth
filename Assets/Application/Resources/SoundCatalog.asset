@@ -22,3 +22,4 @@ MonoBehaviour:
   defaultMusicFade: 1
   sounds:
   - {fileID: 11400000, guid: 94291c4f24fd54185bb9f228b87096ad, type: 2}
+  - {fileID: 11400000, guid: c7ae0e0bbc5dfe146997625fccd30d3b, type: 2}

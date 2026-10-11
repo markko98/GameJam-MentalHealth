@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +11,11 @@ public class GameplayController : USceneController
     private GameplayOutlet outlet;
     private UIStackNavigationController uiStackController;
     private ImageColoringView coloringView;
+    private MultipleChoiceView multipleChoiceView;
     private EventBinding<ItemClickedEvent> itemClickedBinding;
     private EventBinding<ModeChangedEvent> modeChangedEvent;
     private EventBinding<GameOverEvent> gameOverBinding;
+    private EventBinding<MailTaskDoneEvent> mailTaskDoneBinding;
     private DisposeBag disposeBag;
 
     public GameplayController() : base(SceneNames.Gameplay)
@@ -65,7 +68,70 @@ public class GameplayController : USceneController
         UEventBus<ItemClickedEvent>.Register(itemClickedBinding);
         gameOverBinding = new EventBinding<GameOverEvent>(OnGameOver);
         UEventBus<GameOverEvent>.Register(gameOverBinding);
+        mailTaskDoneBinding = new EventBinding<MailTaskDoneEvent>(OnMailTaskDone);
+        UEventBus<MailTaskDoneEvent>.Register(mailTaskDoneBinding);
     }
+
+    #region Tasks
+
+    
+    private void OnMailTaskDone(MailTaskDoneEvent obj)
+    {
+        Debug.Log("Mail Task Done");
+        outlet.burnoutMeter.IncreaseBurnout(20f);
+        GameModeInteractable.Allow(InteractionGroup.None);
+        // MonologueService.Play(MonologueIds.Burnout_Indicator); // monologue Well this was something
+        MonologueService.Play(MonologueIds.Burnout_Indicator, ShowChoice01); // monologue Well this was something
+        
+    }
+
+    #endregion
+
+    #region Choices
+    
+    private void ShowChoice01()
+    {
+        outlet.eyelids.Close(2);
+        ShowMultipleChoiceView(
+            ("Nah, I'll keep working, I gotta finish this all today!", OnChoice01KeepWorking),
+            ("Break, please!!!", OnChoice01TakeBreak));
+    }
+
+    private void OnChoice01KeepWorking()
+    {
+        outlet.eyelids.Open(2);
+        DelayedExecutionManager.ExecuteActionAfterDelay(3500,
+            ()=>
+            {
+                outlet.eyelids.Blink();
+            }).disposeBy(disposeBag);
+        GameModeHandler.Set(GameMode.Task);
+        ToggleClickableElements(GameMode.Task);
+    }
+
+    private void OnChoice01TakeBreak()
+    {
+        outlet.eyelids.Open(2);
+        DelayedExecutionManager.ExecuteActionAfterDelay(3500,
+            ()=>
+            {
+                outlet.eyelids.Blink();
+            }).disposeBy(disposeBag);
+        GameModeHandler.Set(GameMode.Break);
+        ToggleClickableElements(GameMode.Break);
+    }
+
+    private void ShowMultipleChoiceView(params (string text, Action onPicked)[] choices)
+    {
+        if (multipleChoiceView != null && multipleChoiceView.IsActive)
+        {
+            multipleChoiceView.RemoveView(0f, null, AnimationType.ScaleDownFromMiddle);
+            return;
+        }
+        multipleChoiceView = new MultipleChoiceView(outlet.canvas.transform, uiStackController, choices);
+        multipleChoiceView.PresentView(2f, AnimationType.ScaleUpFromMiddle);
+    }
+    #endregion
 
     private void OnGameOver(GameOverEvent args)
     {
@@ -100,14 +166,10 @@ public class GameplayController : USceneController
         MonologueService.Play(MonologueIds.Burnout_Indicator);
     }
 
-    public override void SceneWillAppear()
-    {
-        base.SceneWillAppear();
-    }
-
     private void StartGame()
     {
         // turn screen on
+        GameModeInteractable.Allow(InteractionGroup.None);
         PlayDesktopUnlock();
         // hide buttons
         // enable input
@@ -119,6 +181,7 @@ public class GameplayController : USceneController
         outlet.desktopUnlock.raycastTarget = false;
         outlet.playButton.interactable = false;
         outlet.playButton.gameObject.SetActive(false);
+        GameModeInteractable.Allow(InteractionGroup.Desktop);
     }
 
     

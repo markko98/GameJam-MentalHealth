@@ -83,3 +83,11 @@ public class ModeChangedEvent : IEvent
 public class GameOverEvent : IEvent
 {
 }
+
+public class MailTaskDoneEvent : IEvent
+{
+}
+
+public class MeetingTaskDoneEvent : IEvent
+{
+}

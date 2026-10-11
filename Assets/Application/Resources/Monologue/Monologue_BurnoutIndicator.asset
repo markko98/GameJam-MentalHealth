@@ -16,28 +16,36 @@ MonoBehaviour:
   speaker: Mare
   portrait: {fileID: 0}
   lines:
-  - text: 'Koji je ovo vrag?! Opet su mi mijenjali postavke baterije. '
+  - text: What the hell? Were they messing with my computer again?
     speaker: 
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: Burnout_Indicator
+      value: Burnout_Indicator_01
     charactersPerSecond: 0
     holdDuration: 0
-  - text: Kakav je ovo ogromni indikator baterije?
+  - text: ' Oh, this must be the burnout indicator they mentioned.'
     speaker: 
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: Burnout_Indicator
+      value: 
     charactersPerSecond: 0
     holdDuration: 0
-  - text: Valjda je to za burnout od HR-a kaj su nas natjerali da pazimo.
+  - text: Apparently, burnout is a serious concern around here.
     speaker: 
     portrait: {fileID: 0}
     clip: {fileID: 0}
     sound:
-      value: Burnout_Indicator
+      value: 
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: So serious, that management has introduced a company-wide wellness initiative.
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: 
     charactersPerSecond: 0
     holdDuration: 0
   charactersPerSecond: 0

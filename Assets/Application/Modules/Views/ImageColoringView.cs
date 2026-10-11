@@ -8,14 +8,14 @@ public class ImageColoringView : UIViewController
 
     public ImageColoringView(Sprite sprite, string resourcePath, Transform viewport, UIStackNavigationController controller) : base(controller)
     {
-        view = Object.Instantiate(Resources.Load(resourcePath), viewport, false ) as GameObject;
-        outlet = view.GetComponentInChildren<ImageColoringViewOutlet>();
         this.sprite = sprite;
+        view = Object.Instantiate(Resources.Load(resourcePath), viewport, false ) as GameObject;
     }
 
     public override void ViewDidLoad()
     {
         base.ViewDidLoad();
+        outlet = view.GetComponentInChildren<ImageColoringViewOutlet>();
         outlet.image.sprite = sprite;
     }
 

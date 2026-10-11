@@ -104,13 +104,16 @@ public class EyelidsAnimation : MonoBehaviour
 
     private void Build()
     {
+        // fresh quads, so nothing saved on the scene's quad leaks into the lids
         var quads = image.ActiveQuadDataContainer;
-        while (quads.Count > 2) quads.RemoveQuadData(quads.Count - 1);
-        while (quads.Count < 2) quads.AddQuadData();
+        var saved = quads.Count;
+        var topLid = quads.AddQuadData();
+        var bottomLid = quads.AddQuadData();
+        for (var i = saved - 1; i >= 0; i--) quads.RemoveQuadData(i);
 
         frames.Clear();
-        BuildLid(quads[0], 1f);
-        BuildLid(quads[1], -1f);
+        BuildLid(topLid, 1f);
+        BuildLid(bottomLid, -1f);
         UpdateLayout();
     }
 

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: SpriteCatalogue
   m_EditorClassIdentifier: 
   white: {fileID: 5999497837764710199, guid: 2817af8c1bd7db0439d5811fe2dd40e3, type: 3}
+  item_Polaroid_Friends_Sprite: {fileID: 6307329163632809063, guid: 6f2d2834a4efa4ff2950aa4949c0cc22, type: 3}
+  item_Polaroid_Nonna_Sprite: {fileID: 21300000, guid: 47be9185466fae645ac98290a3594425, type: 3}
+  item_Cat_Sprite: {fileID: 3577828222001725702, guid: 349e6f511f352461ca9c3f788baff95e, type: 3}
