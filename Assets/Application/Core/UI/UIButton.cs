@@ -71,6 +71,14 @@ public class UIButton : Button
         RefreshState();
     }
 
+    // Looks hovered without the pointer; a real hover takes over and clears it when the pointer leaves.
+    public void SetHighlighted(bool highlighted)
+    {
+        var eventData = new PointerEventData(EventSystem.current);
+        if (highlighted) base.OnPointerEnter(eventData);
+        else base.OnPointerExit(eventData);
+    }
+
     public override bool IsInteractable() => base.IsInteractable() && lockCount == 0;
 
     public void Click()

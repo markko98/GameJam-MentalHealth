@@ -12,4 +12,5 @@ public class GameplayOutlet : SceneControllerOutlet
     public BurnoutMeter burnoutMeter;
     public InputHandler inputHandler;
     public CameraController cameraController;
+    public UIButton folderIcon;
 }

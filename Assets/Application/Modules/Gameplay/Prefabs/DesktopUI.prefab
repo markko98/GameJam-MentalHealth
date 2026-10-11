@@ -1232,7 +1232,7 @@ MonoBehaviour:
   _instanceQuadDataContainer:
     editorSelectedQuadIdx: 0
     _quadDataList:
-    - editorSelectedAnimationState: 0
+    - editorSelectedAnimationState: 1
       editorSelectedAnimationSubState: 0
       _outlineConfig:
         rid: -2
@@ -1308,7 +1308,7 @@ MonoBehaviour:
           skewAnim:
             rid: -2
           interpolationType: 6
-          duration: 0.1
+          duration: 0.3
           uvRect: {x: 0, y: 0, z: 1, w: 1}
           offset: {x: 0, y: 6}
           sizeModifier: {x: 0, y: 0}
@@ -1317,7 +1317,7 @@ MonoBehaviour:
           cornerChamfer: {x: 0, y: 0, z: 0, w: 0}
           cornerConcavity: {x: 0, y: 0, z: 0, w: 0}
           primaryColors:
-          - {r: 1, g: 1, b: 1, a: 1}
+          - {r: 1, g: 0.8962264, b: 0.8962264, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
           - {r: 1, g: 1, b: 1, a: 1}
@@ -1330,7 +1330,7 @@ MonoBehaviour:
           primaryColorRotation: 0
           primaryColorScale: {x: 1, y: 1}
           primaryColorFade: 255
-        playbackType: 0
+        playbackType: 2
         loopStartIdx: 0
         unwindToIdx: -1
         unwindRate: 1
@@ -1374,7 +1374,7 @@ MonoBehaviour:
     - rid: 3964586264624365643
       type: {class: PatternConfig, ns: JeffGrawAssets.FlexibleUI, asm: JeffGrawAssets.FlexibleUI.Runtime}
       data:
-        patternType: 2
+        patternType: 3
         originPos: 0
         scanlineSpeedIsStaticOffset: 0
         softPattern: 1
@@ -1413,7 +1413,7 @@ MonoBehaviour:
       type: {class: PatternAnimData, ns: JeffGrawAssets.FlexibleUI, asm: JeffGrawAssets.FlexibleUI.Runtime}
       data:
         patternColors:
-        - {r: 0, g: 0, b: 0, a: 1}
+        - {r: 0.99607843, g: 0.8509804, b: 0.015686275, a: 1}
         - {r: 0, g: 0, b: 0, a: 1}
         - {r: 0, g: 0, b: 0, a: 1}
         - {r: 0, g: 0, b: 0, a: 1}
@@ -1426,9 +1426,9 @@ MonoBehaviour:
         patternColorRotation: 0
         patternColorScale: {x: 1, y: 1}
         patternDensity: 0
-        patternSpeed: 0.071777344
+        patternSpeed: 0.064941406
         patternCellParam: 0.5
-        patternLineThickness: 127
+        patternLineThickness: 23
         patternSpriteRotation: 0
 --- !u!114 &6577180964942283047
 MonoBehaviour:
@@ -3294,10 +3294,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 5226962758195736182}
     m_Modifications:
     - target: {fileID: 2755857146851130397, guid: cb5b63ca6d5418444a0d2e5dd750fbe7, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2755857146851130397, guid: cb5b63ca6d5418444a0d2e5dd750fbe7, type: 3}
       propertyPath: managedReferences[2678648035964093066].outlineWidth
       value: 4
       objectReference: {fileID: 0}
@@ -3503,10 +3499,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5717138864451369697}
     m_Modifications:
-    - target: {fileID: 3131187929860901130, guid: 55a38b67801ecf34cb0ac94a577f072d, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5225802577211777179, guid: 55a38b67801ecf34cb0ac94a577f072d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3628,10 +3620,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Button_PrimaryHold
       objectReference: {fileID: 0}
-    - target: {fileID: 3775430825713234560, guid: d7d1e758c21c0a8418ccc4e15d26f7b9, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7668306292821552774, guid: d7d1e758c21c0a8418ccc4e15d26f7b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3711,10 +3699,6 @@ PrefabInstance:
     - target: {fileID: 7668306292821552774, guid: d7d1e758c21c0a8418ccc4e15d26f7b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8313567342957346531, guid: d7d1e758c21c0a8418ccc4e15d26f7b9, type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

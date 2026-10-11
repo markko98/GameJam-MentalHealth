@@ -34,11 +34,20 @@ public class GameplayController : USceneController
 
         GameModeHandler.Set(GameMode.Task);
         outlet.playButton.Register(StartGame);
-        // StartDemoMonologue();
 
         outlet.eyelids.Close(0);
         DelayedExecutionManager.ExecuteActionAfterDelay(1000, OpenEyelid).disposeBy(disposeBag);
         GameTicker.SharedInstance.Update += DebugModeKeys;
+    }
+
+    private void StartInitialMonologue()
+    {
+        MonologueService.Play(MonologueIds.Burnout_Indicator, ShowMailTask);
+    }
+
+    private void ShowMailTask()
+    {
+        outlet.folderIcon.SetHighlighted(true);
     }
 
     private void OpenEyelid()
@@ -133,6 +142,39 @@ public class GameplayController : USceneController
     }
     #endregion
 
+    #region Items
+    
+    private void OnItemClicked(ItemClickedEvent data)
+    {
+        switch (data.id)
+        {
+            case "Item_Maca":
+                PlayCatView(); break;
+            case "Item_Polaroid_Friends":
+                PlaySlika1View(); break;
+            // case "Monitor":; break;
+        }
+    }
+    
+    private void PlayCatView()
+    {
+        // MonologueService.Play(MonologueIds.ma);
+        // show black screen and play purring sound
+        Debug.Log("Playing Cat");
+    }
+    
+    private void PlaySlika1View()
+    {
+        // MonologueService.Play(MonologueIds.ma);
+        Debug.Log("Playing Item_Polaroid_Friends");
+        ShowImageColoringView(GetSpriteForImage("Item_Polaroid_Friends"));
+    }
+
+    #endregion
+    
+    #region Other
+
+    
     private void OnGameOver(GameOverEvent args)
     {
         outlet.eyelids.Close(3);
@@ -171,6 +213,7 @@ public class GameplayController : USceneController
         // turn screen on
         GameModeInteractable.Allow(InteractionGroup.None);
         PlayDesktopUnlock();
+        StartInitialMonologue();
         // hide buttons
         // enable input
     }
@@ -184,32 +227,6 @@ public class GameplayController : USceneController
         GameModeInteractable.Allow(InteractionGroup.Desktop);
     }
 
-    
-    private void OnItemClicked(ItemClickedEvent data)
-    {
-        switch (data.id)
-        {
-            case "Item_Maca":
-                PlayCatView(); break;
-            case "Item_Polaroid_Friends":
-                PlaySlika1View(); break;
-            // case "Monitor":; break;
-        }
-    }
-    
-    private void PlayCatView()
-    {
-        // MonologueService.Play(MonologueIds.ma);
-        // show black screen and play purring sound
-        Debug.Log("Playing Cat");
-    }
-    
-    private void PlaySlika1View()
-    {
-        // MonologueService.Play(MonologueIds.ma);
-        Debug.Log("Playing Item_Polaroid_Friends");
-        ShowImageColoringView(GetSpriteForImage("Item_Polaroid_Friends"));
-    }
     private void ShowImageColoringView(Sprite sprite)
     {
         if (coloringView != null && coloringView.IsActive)
@@ -233,7 +250,7 @@ public class GameplayController : USceneController
 
         return SpriteProvider.Sprites.item_Cat_Sprite;
     }
-    
+    #endregion
     public override void SceneWillDisappear()
     {
         base.SceneWillDisappear();
