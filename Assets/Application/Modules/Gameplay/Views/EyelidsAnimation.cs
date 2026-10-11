@@ -11,6 +11,9 @@ using Interpolation = JeffGrawAssets.FlexibleUI.ProceduralProperties.Interpolati
 //   await outlet.eyelids.Blink();
 //   await outlet.eyelids.SlowBlink();
 //   await outlet.eyelids.Close(); ... await outlet.eyelids.Open();
+//   outlet.eyelids.Tire(0.75f); // heavier, slower blinks for the next 10-15s
+//
+// On its own it blinks every few seconds, but never while closed or mid-animation.
 [RequireComponent(typeof(FlexibleImage))]
 public class EyelidsAnimation : MonoBehaviour
 {
@@ -38,9 +41,23 @@ public class EyelidsAnimation : MonoBehaviour
     [SerializeField] private float closeDuration = 1f;
     [SerializeField] private float openDuration = 1f;
 
+    [Header("Auto blink")]
+    [SerializeField] private bool autoBlink = true;
+    [SerializeField] private Vector2 blinkInterval = new(4f, 9f);
+    [SerializeField] private Vector2 tiredBlinkInterval = new(1.5f, 3.5f);
+    [SerializeField] private Vector2 tiredDuration = new(10f, 15f);
+    [Tooltip("Heavy blink at the lowest tiredness (x) and at full tiredness (y): close, hold, open.")]
+    [SerializeField] private Vector3 heavyBlinkLight = new(0.25f, 0.1f, 0.4f);
+    [SerializeField] private Vector3 heavyBlinkFull = new(1f, 0.8f, 1.6f);
+
     private FlexibleImage image;
     private readonly List<(ProceduralProperties frame, float side, bool open)> frames = new();
     private int sequenceState = SequenceStateB;
+    private bool isClosed;
+    private float busyUntil;
+    private float nextBlinkTime;
+    private float tiredUntil;
+    private float tiredness;
 
     private void Awake()
     {
@@ -51,11 +68,41 @@ public class EyelidsAnimation : MonoBehaviour
         // Single mode draws only the primary quad
         image.DataMode = FlexibleImage.QuadDataMode.Multiple;
         Build();
+        ScheduleBlink(blinkInterval);
     }
 
     public Awaitable Blink() => PlaySequence(blinkClose, 0f, blinkOpen);
 
     public Awaitable SlowBlink() => PlaySequence(slowClose, slowHold, slowOpen);
+
+    // amount 0..1 (e.g. burnout / max): how heavy the blinks get during the tired window.
+    public void Tire(float amount)
+    {
+        tiredness = Mathf.Clamp01(amount);
+        tiredUntil = Time.time + Random.Range(tiredDuration.x, tiredDuration.y);
+        nextBlinkTime = Mathf.Min(nextBlinkTime, Time.time + tiredBlinkInterval.x);
+    }
+
+    private void Update()
+    {
+        if (!autoBlink || Time.time < nextBlinkTime) return;
+
+        var tired = Time.time < tiredUntil;
+        ScheduleBlink(tired ? tiredBlinkInterval : blinkInterval);
+        if (isClosed || Time.time < busyUntil) return;
+
+        if (tired) StartHeavyBlink();
+        else StartSequence(blinkClose, 0f, blinkOpen);
+    }
+
+    private void ScheduleBlink(Vector2 interval) => nextBlinkTime = Time.time + Random.Range(interval.x, interval.y);
+
+    private void StartHeavyBlink()
+    {
+        var t = tiredness * Random.Range(0.75f, 1f);
+        var blink = Vector3.Lerp(heavyBlinkLight, heavyBlinkFull, t);
+        StartSequence(blink.x, blink.y, blink.z);
+    }
 
     public Awaitable Close(float? duration = null)
     {
@@ -63,6 +110,7 @@ public class EyelidsAnimation : MonoBehaviour
         foreach (var quad in image.ActiveQuadDataContainer)
             quad.proceduralAnimationStates[ClosedState].proceduralProperties[0].duration = seconds;
 
+        isClosed = true;
         return Play(ClosedState, seconds);
     }
 
@@ -72,12 +120,15 @@ public class EyelidsAnimation : MonoBehaviour
         foreach (var quad in image.ActiveQuadDataContainer)
             quad.DefaultProceduralProps.duration = seconds;
 
+        isClosed = false;
         return Play(OpenState, seconds);
     }
 
+    private Awaitable PlaySequence(float close, float hold, float open) => Awaitable.WaitForSecondsAsync(StartSequence(close, hold, open));
+
     // Selecting the state that is already playing does not restart it, so sequences
     // alternate between two identical slots and every call starts from the current pose.
-    private Awaitable PlaySequence(float close, float hold, float open)
+    private float StartSequence(float close, float hold, float open)
     {
         sequenceState = sequenceState == SequenceStateA ? SequenceStateB : SequenceStateA;
 
@@ -93,13 +144,21 @@ public class EyelidsAnimation : MonoBehaviour
             substates[2].duration = open;
         }
 
-        return Play(sequenceState, close + hold + open);
+        isClosed = false;
+        SetState(sequenceState, close + hold + open);
+        return close + hold + open;
     }
 
     private Awaitable Play(int state, float seconds)
     {
-        image.scriptDrivenAnimationState = state;
+        SetState(state, seconds);
         return Awaitable.WaitForSecondsAsync(seconds);
+    }
+
+    private void SetState(int state, float seconds)
+    {
+        image.scriptDrivenAnimationState = state;
+        busyUntil = Time.time + seconds;
     }
 
     private void Build()

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9022c7a62da884cbd95368c39c76e4dd, type: 3}
+  m_Name: Monologue_Memory_Cat
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueDefinition
+  id: Cat
+  speaker: Mare
+  portrait: {fileID: 0}
+  lines:
+  - text: "This little troublemaker has been with me for years.\r\n I always swore
+      her purring healed my soul.\r\nI still miss her."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: Cat
+    charactersPerSecond: 0
+    holdDuration: 0
+  charactersPerSecond: 0
+  minLineDuration: 0
+  secondsPerCharacter: 0
+  lineFadeDuration: 0
+  autoAdvance: 0
+  skippable: 1
+  waitForVoice: 0
+  playOnce: 1
+  viewPrefab: {fileID: 0}
+  openSound:
+    value: 
+  closeSound:
+    value: 

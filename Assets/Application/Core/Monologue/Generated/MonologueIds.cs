@@ -3,8 +3,15 @@ public static class MonologueIds
 {
     public const string AfterMailTask = "AfterMailTask";
     public const string Burnout_Indicator = "Burnout_Indicator";
+    public const string CampingTrip = "CampingTrip";
+    public const string Cat = "Cat";
+    public const string GameComplete = "GameComplete";
+    public const string GameOver = "GameOver";
     public const string Idle = "Idle";
     public const string Monologue_Demo = "Monologue_Demo";
+    public const string Nona = "Nona";
+    public const string Ordinary = "Ordinary";
     public const string RightTheMeeting = "RightTheMeeting";
+    public const string Sister = "Sister";
     public const string ThisMeetingWasExausting = "ThisMeetingWasExausting";
 }

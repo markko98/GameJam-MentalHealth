@@ -48,6 +48,7 @@ public class GameplayController : USceneController
         outlet = GameObject.Find(OutletNames.Gameplay).GetComponent<GameplayOutlet>();
         uiStackController = new UIStackNavigationController(outlet.canvas.transform);
         SubscribeToEvents();
+        outlet.burnoutMeter.Increased += OnBurnoutIncreased;
         
         outlet.eyelids.Close(0);
         GameModeInteractable.Allow(InteractionGroup.None);
@@ -147,7 +148,7 @@ public class GameplayController : USceneController
         GameModeInteractable.Allow(InteractionGroup.None);
         outlet.window.SetHighlighted(false);
         outlet.eyelids.Close(3);
-        MonologueService.Play(MonologueIds.Monologue_Demo, ResetScene); // TODO: game complete monologue
+        MonologueService.Play(MonologueIds.GameComplete, ResetScene); // TODO: game complete monologue
     }
 
     // Returns true when this pushed burnout to the max, so the caller stops its flow.
@@ -158,11 +159,12 @@ public class GameplayController : USceneController
 
         if (outlet.burnoutMeter.Burnout < BurnoutMeter.Max) return false;
 
-        GameOver();
+        StopForGameOver();
         return true;
     }
 
-    private void GameOver()
+    // Stops the flow right away; the ending waits for the bar to fill (BurnoutMeter then raises GameOverEvent).
+    private void StopForGameOver()
     {
         if (isGameOver) return;
 
@@ -170,13 +172,23 @@ public class GameplayController : USceneController
         afterBreak = null;
         disposeBag.Dispose();
         GameModeInteractable.Allow(InteractionGroup.None);
+    }
+
+    private void PlayGameOver()
+    {
+        StopForGameOver();
         outlet.eyelids.Close(3);
-        MonologueService.Interrupt(MonologueIds.Monologue_Demo, ResetScene); // TODO: game over monologue
+        MonologueService.Interrupt(MonologueIds.GameOver, ResetScene);
     }
 
     private static void SetTime(string time)
     {
         UEventBus<TimeChangedEvent>.Raise(new TimeChangedEvent(time));
+    }
+
+    private void OnBurnoutIncreased(float burnout)
+    {
+        outlet.eyelids.Tire(burnout / BurnoutMeter.Max);
     }
 
     private void ResetScene()
@@ -350,7 +362,7 @@ public class GameplayController : USceneController
     
     private void OnGameOver(GameOverEvent args)
     {
-        GameOver();
+        PlayGameOver();
     }
 
     private void OnModeChanged(ModeChangedEvent mode)
@@ -439,6 +451,7 @@ public class GameplayController : USceneController
         UEventBus<ImageColoringDoneEvent>.Deregister(imageColoringDoneBinding);
         UEventBus<SlackCallAnsweredEvent>.Deregister(slackCallAnsweredBinding);
         UEventBus<LogoTaskDoneEvent>.Deregister(logoTaskDoneBinding);
+        outlet.burnoutMeter.Increased -= OnBurnoutIncreased;
         GameTicker.SharedInstance.Update -= DebugModeKeys;
         disposeBag.Dispose();
     }

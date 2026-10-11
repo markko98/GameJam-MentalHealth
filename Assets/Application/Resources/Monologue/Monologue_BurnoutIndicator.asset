@@ -56,6 +56,41 @@ MonoBehaviour:
       value: SoSerious
     charactersPerSecond: 0
     holdDuration: 0
+  - text: "With all the work I already do, I have to do some smalls tasks that should
+      help \u201Creduce burnout\u201D."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: WithAllTheWork
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: Some choices should increase the burnout level making me feel more exhausted
+      and stressed, other choices should help me feel more calm.
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: SomeChoices
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: "As if I don\u2019t have enough work without all that crap."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: AsIfIDontHave
+    charactersPerSecond: 0
+    holdDuration: 0
+  - text: "Well, the deadlines won\u2019t meet themselves. What\u2019s first on my
+      list\u2026"
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: WellTheDeadlines
+    charactersPerSecond: 0
+    holdDuration: 0
   charactersPerSecond: 0
   minLineDuration: 0
   secondsPerCharacter: 0

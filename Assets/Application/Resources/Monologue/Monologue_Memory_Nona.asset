@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9022c7a62da884cbd95368c39c76e4dd, type: 3}
+  m_Name: Monologue_Memory_Nona
+  m_EditorClassIdentifier: Assembly-CSharp::MonologueDefinition
+  id: Nona
+  speaker: Mare
+  portrait: {fileID: 0}
+  lines:
+  - text: "Nona\u2019s little house\u2026\r\nI used to draw it all the time.\r\nI
+      think this was the first drawing that made me want to become an artist.\r\nI
+      wonder what little me would think of my work today."
+    speaker: 
+    portrait: {fileID: 0}
+    clip: {fileID: 0}
+    sound:
+      value: Nona
+    charactersPerSecond: 0
+    holdDuration: 0
+  charactersPerSecond: 0
+  minLineDuration: 0
+  secondsPerCharacter: 0
+  lineFadeDuration: 0
+  autoAdvance: 0
+  skippable: 1
+  waitForVoice: 0
+  playOnce: 1
+  viewPrefab: {fileID: 0}
+  openSound:
+    value: 
+  closeSound:
+    value: 

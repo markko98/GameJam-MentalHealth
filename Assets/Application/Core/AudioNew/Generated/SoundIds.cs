@@ -6,11 +6,18 @@ public static class SoundIds
 {
     public const string Apparently = "Apparently";
     public const string AsIfIDontHave = "AsIfIDontHave";
+    public const string CampingTrip = "CampingTrip";
+    public const string Cat = "Cat";
+    public const string GameComplete = "GameComplete";
+    public const string GameOver = "GameOver";
     public const string Idle = "Idle";
     public const string IUsedToDream = "IUsedToDream";
     public const string NoImLying = "NoImLying";
+    public const string Nona = "Nona";
+    public const string OrdinaryDay = "OrdinaryDay";
     public const string RightTheMeeting = "RightTheMeeting";
     public const string SeemsLike = "SeemsLike";
+    public const string Sister = "Sister";
     public const string slack = "slack";
     public const string SomeChoices = "SomeChoices";
     public const string SometimesWhenIFeel = "SometimesWhenIFeel";
