@@ -3,17 +3,6 @@ using JeffGrawAssets.FlexibleUI;
 using UnityEngine;
 using Interpolation = JeffGrawAssets.FlexibleUI.ProceduralProperties.InterpolationType;
 
-// Almond shaped eyelids on one FlexibleImage, animated by its own script-driven states.
-// Two black quads each have a round SDF cutout; what stays visible is where the holes overlap,
-// a lens that pinches at the sides as the circles slide apart. The object is stretched on X so
-// the lens is wider and flatter than the circles (FlexibleImage caps the cutout radius at ~1024).
-//
-//   await outlet.eyelids.Blink();
-//   await outlet.eyelids.SlowBlink();
-//   await outlet.eyelids.Close(); ... await outlet.eyelids.Open();
-//   outlet.eyelids.Tire(0.75f); // heavier, slower blinks for the next 10-15s
-//
-// On its own it blinks every few seconds, but never while closed or mid-animation.
 [RequireComponent(typeof(FlexibleImage))]
 public class EyelidsAnimation : MonoBehaviour
 {

@@ -148,7 +148,7 @@ public class GameplayController : USceneController
         GameModeInteractable.Allow(InteractionGroup.None);
         outlet.window.SetHighlighted(false);
         outlet.eyelids.Close(3);
-        MonologueService.Play(MonologueIds.GameComplete, ResetScene); // TODO: game complete monologue
+        MonologueService.Play(MonologueIds.GameComplete, ResetScene);
     }
 
     // Returns true when this pushed burnout to the max, so the caller stops its flow.
@@ -211,7 +211,7 @@ public class GameplayController : USceneController
     private void ShowSlackCall()
     {
         outlet.desktopUI.ShowSlackCall(); // also starts the slack ringtone
-        MonologueService.Play(MonologueIds.RightTheMeeting); // TODO: slack call monologue
+        MonologueService.Play(MonologueIds.RightTheMeeting);
     }
 
     // DesktopUI already stopped the ringtone and hid the call.
@@ -338,13 +338,16 @@ public class GameplayController : USceneController
         Debug.Log("Playing Cat");
         item.Clickable = false;
         var clip = Resources.Load<VideoClip>(CatVideoPath);
-        new VideoView(clip, outlet.canvas.transform, uiStackController, OnBreakActionDone).PresentView(0.3f, AnimationType.ScaleUpFromMiddle);
+        // the cat's memory comes after the video, and the break counts once it's over
+        new VideoView(clip, outlet.canvas.transform, uiStackController,
+            () => MonologueService.Play(GetMemoryMonologue(item.Id), OnBreakActionDone)).PresentView(0.3f, AnimationType.ScaleUpFromMiddle);
     }
     
     private void PlaySlika1View(ClickableItem item)
     {
         Debug.Log("Playing Item_Polaroid_Friends");
         coloringItem = item;
+        PlayMemory(item.Id);
         ShowImageColoringView(GetSpriteForImage("Item_Polaroid_Friends"));
     }
 
@@ -353,6 +356,23 @@ public class GameplayController : USceneController
         if (coloringItem != null) coloringItem.Clickable = false;
         coloringItem = null;
         OnBreakActionDone();
+    }
+
+    // Plays while the activity is open; memory monologues are playOnce, so reopening stays quiet.
+    private void PlayMemory(string itemId)
+    {
+        MonologueService.Play(GetMemoryMonologue(itemId));
+    }
+
+    private static string GetMemoryMonologue(string itemId)
+    {
+        switch (itemId)
+        {
+            case "Item_Maca": return MonologueIds.Cat;
+            case "Item_Polaroid_Friends": return MonologueIds.CampingTrip;
+            case "Item_Polaroid_Nonna": return MonologueIds.Nona;
+            default: return null;
+        }
     }
 
     #endregion
