@@ -79,3 +79,7 @@ public class ModeChangedEvent : IEvent
         this.mode = mode;
     }
 }
+
+public class GameOverEvent : IEvent
+{
+}

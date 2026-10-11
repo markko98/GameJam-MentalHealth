@@ -9,6 +9,7 @@ public class GameplayOutlet : SceneControllerOutlet
     
     public FlexibleImage desktopUnlock;
     public EyelidsAnimation eyelids;
+    public BurnoutMeter burnoutMeter;
     public InputHandler inputHandler;
     public CameraController cameraController;
 }

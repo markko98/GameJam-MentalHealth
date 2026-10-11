@@ -12,6 +12,7 @@ public class GameplayController : USceneController
     private ImageColoringView coloringView;
     private EventBinding<ItemClickedEvent> itemClickedBinding;
     private EventBinding<ModeChangedEvent> modeChangedEvent;
+    private EventBinding<GameOverEvent> gameOverBinding;
     private DisposeBag disposeBag;
 
     public GameplayController() : base(SceneNames.Gameplay)
@@ -26,7 +27,8 @@ public class GameplayController : USceneController
         outlet = GameObject.Find(OutletNames.Gameplay).GetComponent<GameplayOutlet>();
         uiStackController = new UIStackNavigationController(outlet.canvas.transform);
         SubscribeToEvents();
-        
+        GameModeInteractable.Allow(InteractionGroup.Desktop);
+
         GameModeHandler.Set(GameMode.Task);
         outlet.playButton.Register(StartGame);
         // StartDemoMonologue();
@@ -50,6 +52,10 @@ public class GameplayController : USceneController
         else if (keyboard.digit2Key.wasPressedThisFrame) GameModeHandler.Set(GameMode.Task);
         else if (keyboard.digit3Key.wasPressedThisFrame) StartBurnoutMonologue();
         else if (keyboard.digit4Key.wasPressedThisFrame) outlet.eyelids.Blink();
+        else if (keyboard.digit6Key.wasPressedThisFrame) outlet.burnoutMeter.IncreaseBurnout(20f);
+        else if (keyboard.digit7Key.wasPressedThisFrame) outlet.burnoutMeter.DecreaseBurnout(20f);
+        else if (keyboard.digit8Key.wasPressedThisFrame) GameModeInteractable.Allow(InteractionGroup.Items);
+        else if (keyboard.digit9Key.wasPressedThisFrame) GameModeInteractable.Allow(InteractionGroup.Desktop);
     }
     private void SubscribeToEvents()
     {
@@ -57,18 +63,36 @@ public class GameplayController : USceneController
         UEventBus<ModeChangedEvent>.Register(modeChangedEvent);
         itemClickedBinding = new EventBinding<ItemClickedEvent>(OnItemClicked);
         UEventBus<ItemClickedEvent>.Register(itemClickedBinding);
+        gameOverBinding = new EventBinding<GameOverEvent>(OnGameOver);
+        UEventBus<GameOverEvent>.Register(gameOverBinding);
     }
+
+    private void OnGameOver(GameOverEvent args)
+    {
+        outlet.eyelids.Close(3);
+    }
+
     private void OnModeChanged(ModeChangedEvent mode)
     {
         // zoom, parallax and what is clickable are handled by GameModeHandler / GameModeInteractable;
         GameModeHandler.Set(mode.mode);
         ToggleClickableElements(mode.mode);
-        // gameplay reactions to a mode change (monologues, sounds, timers) go here
     }
 
     private void ToggleClickableElements(GameMode mode)
     {
-        
+        switch (mode)
+        {
+            case GameMode.Break:
+                GameModeInteractable.Allow(InteractionGroup.Items);
+                break;
+            case GameMode.Task:
+                GameModeInteractable.Allow(InteractionGroup.Desktop);
+                break;
+            case GameMode.Other:
+                GameModeInteractable.Allow(InteractionGroup.All);
+                break;
+        }
     }
 
     private void StartBurnoutMonologue()
@@ -121,6 +145,7 @@ public class GameplayController : USceneController
     {
         // MonologueService.Play(MonologueIds.ma);
         Debug.Log("Playing Item_Polaroid_Friends");
+        ShowImageColoringView(GetSpriteForImage("Item_Polaroid_Friends"));
     }
     private void ShowImageColoringView(Sprite sprite)
     {
@@ -129,10 +154,23 @@ public class GameplayController : USceneController
             coloringView.RemoveView(0f, null, AnimationType.ScaleDownFromMiddle);
             return;
         }
-        coloringView ??= new ImageColoringView(sprite, "ColoringView", outlet.canvas.transform, uiStackController);
-        coloringView.PresentView(0f, AnimationType.SlideInRight);
+        coloringView ??= new ImageColoringView(sprite, "ImageColoringView", outlet.canvas.transform, uiStackController);
+        coloringView.PresentView(0.3f, AnimationType.ScaleUpFromMiddle);
     }
 
+    private Sprite GetSpriteForImage(string id)
+    {
+        switch (id)
+        {
+            case "Item_Maca":
+                return SpriteProvider.Sprites.item_Cat_Sprite;
+            case "Item_Polaroid_Friends":
+                return SpriteProvider.Sprites.item_Polaroid_Friends_Sprite;
+        }
+
+        return SpriteProvider.Sprites.item_Cat_Sprite;
+    }
+    
     public override void SceneWillDisappear()
     {
         base.SceneWillDisappear();
@@ -141,6 +179,7 @@ public class GameplayController : USceneController
         MonologueService.ClearHistory();
         UEventBus<ItemClickedEvent>.Deregister(itemClickedBinding);
         UEventBus<ModeChangedEvent>.Deregister(modeChangedEvent);
+        UEventBus<GameOverEvent>.Deregister(gameOverBinding);
         GameTicker.SharedInstance.Update -= DebugModeKeys;
         disposeBag.Dispose();
     }

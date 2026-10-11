@@ -5,4 +5,9 @@ using UnityEngine;
 public class SpriteCatalogue : ScriptableObject
 {
     public Sprite white;
+    
+    [Header("Images")]
+    public Sprite item_Polaroid_Friends_Sprite;
+    public Sprite item_Polaroid_Nonna_Sprite;
+    public Sprite item_Cat_Sprite;
 }

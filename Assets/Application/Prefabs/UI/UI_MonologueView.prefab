@@ -621,7 +621,7 @@ MonoBehaviour:
           primaryColorOffset: {x: 0, y: 0}
           primaryColorRotation: 0
           primaryColorScale: {x: 1, y: 1}
-          primaryColorFade: 123
+          primaryColorFade: 154
         playbackType: 0
         loopStartIdx: 0
         unwindToIdx: -1
@@ -833,7 +833,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_text
-      value: 
+      value: Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolorLorem ipsum dolorLorem
+        ipsum dolorLorem ipsum dolorLorem ipsum dolor
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontSize
@@ -841,15 +842,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.28627452
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.15294118
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.019607844
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_fontSizeBase
@@ -858,6 +859,10 @@ PrefabInstance:
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7611865783758487383, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}
       propertyPath: m_VerticalAlignment
@@ -980,6 +985,7 @@ MonoBehaviour:
   secondsPerCharacter: 0.04
   fadeDuration: 0.25
   waitForVoice: 1
+  soundFadeOut: 0.15
 --- !u!224 &4531621507884314717 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8749124199571689373, guid: 8f81c50feee09a54dab58b32c06e4965, type: 3}

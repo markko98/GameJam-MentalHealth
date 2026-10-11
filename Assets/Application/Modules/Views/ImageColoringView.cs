@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ImageColoringView : UIViewController
 {
-    private const string CloseButtonLabel = "CloseButton";
     private ImageColoringViewOutlet outlet;
     private readonly Sprite sprite;
 

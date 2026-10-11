@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6484054862410429912}
   - component: {fileID: 4348518457669892977}
   - component: {fileID: 2448757181310160305}
+  - component: {fileID: 1032231584276385443}
+  - component: {fileID: 5019581091603390964}
   m_Layer: 0
   m_Name: Icon
   m_TagString: Untagged
@@ -223,6 +225,32 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!225 &1032231584276385443
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59741413205080004}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &5019581091603390964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59741413205080004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67f65c1e6fb44844b60292a26adf692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameModeInteractable
+  activeIn: 00000000
+  group: 2
 --- !u!1 &7178668829238940115
 GameObject:
   m_ObjectHideFlags: 0
